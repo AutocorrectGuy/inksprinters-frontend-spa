@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  @keyframes rotate-Y-animation-keyframes {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
+
+  .rotate-y-animation {
+    animation: rotate-Y-animation-keyframes 750ms;
+  }
+}
