@@ -56,11 +56,9 @@ const markdown = `## Exercise 1: Monster Attack
 - "Effective damage dealt is 50."`
 const CodingExercises = (props: Props) => {
   return (
-    <MainContentContainer h1='Coding exercises' >
-      <div className='p-4 rounded-[20px]'>
-        <Markdown >
-          {markdown}
-        </Markdown>
+    <MainContentContainer h1="Coding exercises">
+      <div className="rounded-[20px] p-4">
+        <Markdown>{markdown}</Markdown>
       </div>
     </MainContentContainer>
   )

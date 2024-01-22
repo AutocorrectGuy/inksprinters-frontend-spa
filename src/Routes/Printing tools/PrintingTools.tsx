@@ -6,8 +6,8 @@ type Props = {}
 
 const PrintingTools = (props: Props) => {
   return (
-    <MainContentContainer h1='Printing tools'>
-      <CardGrid cardsetName='Printing tools' />
+    <MainContentContainer h1="Printing tools">
+      <CardGrid cardsetName="Printing tools" />
     </MainContentContainer>
   )
 }

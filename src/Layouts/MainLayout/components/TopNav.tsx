@@ -35,10 +35,7 @@ const TopNav = () => {
             Log in
           </Link>
 
-          <Link
-            to={'/'}
-            className="ml-4 font-semibold text-neutral-400 hover:text-white focus:rounded-sm"
-          >
+          <Link to={'/'} className="ml-4 font-semibold text-neutral-400 hover:text-white focus:rounded-sm">
             Register
           </Link>
         </div>

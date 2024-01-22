@@ -1,5 +1,5 @@
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core"
-import { ReactNode } from "react"
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
+import { ReactNode } from 'react'
 
 export type SiderBarButtonProps = {
   icon: IconDefinition
@@ -15,7 +15,7 @@ export type SiderBarButtonProps = {
 }
 
 export type LinkOrButtonProps = {
-  href?: string;
-  children: ReactNode;
-  [x: string]: any; // This line allows additional props
-};
+  href?: string
+  children: ReactNode
+  [x: string]: any // This line allows additional props
+}

@@ -36,7 +36,7 @@ const TailwindcssDropdown = ({ items, selectedItem, onSelect, label, labelClassN
       onClick={toggleDropdown}
     >
       {/* Label */}
-      {label && <div className={`${labelClassName ?? "px-3 py-2 grow"}`}>{label}</div>}
+      {label && <div className={`${labelClassName ?? 'grow px-3 py-2'}`}>{label}</div>}
 
       {/* Button */}
       <div className="relative inline-block text-left">

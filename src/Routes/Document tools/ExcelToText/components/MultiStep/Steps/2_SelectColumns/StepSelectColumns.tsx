@@ -40,12 +40,10 @@ const StepSelectColumns = ({ handlePreviousStep, handleNextStep }: StepComponent
   return (
     <>
       {tableData && sheetData && (
-        <div className="flex flex-col h-full grow overflow-hidden">
+        <div className="flex h-full grow flex-col overflow-hidden">
           {/* Heading */}
           <div className="flex items-center justify-center py-4 text-left">
-            <p className="mr-2">
-              Please pick the column you want to use.
-            </p>
+            <p className="mr-2">Please pick the column you want to use.</p>
             <span data-tooltip-id="tooltip-excel-viewer-1">
               <FontAwesomeIcon
                 icon={faInfoCircle}
@@ -80,7 +78,7 @@ const StepSelectColumns = ({ handlePreviousStep, handleNextStep }: StepComponent
             </Tooltip>
           </div>
           {/* Table container */}
-          <div className="flex-grow overflow-auto h-0">
+          <div className="h-0 flex-grow overflow-auto">
             <table
               ref={tableRef}
               className="table table-pin-rows table-pin-cols table-xs mx-auto w-fit table-fixed overflow-hidden rounded-none"

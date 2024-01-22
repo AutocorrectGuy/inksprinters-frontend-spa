@@ -5,8 +5,8 @@ type Props = {}
 
 const ArtworkCalibration = (props: Props) => {
   return (
-    <MainContentContainer h1='Recalibrate artwork position' >
-      <div className='p-4'>ArtworkCalibration</div>
+    <MainContentContainer h1="Recalibrate artwork position">
+      <div className="p-4">ArtworkCalibration</div>
     </MainContentContainer>
   )
 }

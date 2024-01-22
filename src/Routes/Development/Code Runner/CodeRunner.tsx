@@ -3,26 +3,25 @@ import MainContentContainer from '../../../Layouts/MainLayout/components/MainLay
 import * as monaco from 'monaco-editor'
 import { Editor } from '@monaco-editor/react'
 import { getMaxContainerHeight, styles } from '../../../Layouts/MainLayout/config/MainLayout.config'
-import Worker from 'web-worker';
-
+import Worker from 'web-worker'
 
 type Props = {}
 
 type MonacoType = typeof monaco
 const debounce = <F extends (...args: any[]) => void>(func: F, waitFor: number) => {
-  let timeout: NodeJS.Timeout;
+  let timeout: NodeJS.Timeout
 
   return (...args: Parameters<F>) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), waitFor);
-  };
-};
+    clearTimeout(timeout)
+    timeout = setTimeout(() => func(...args), waitFor)
+  }
+}
 
 const CodeRunner = (props: Props) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [input, setInput] = useState<string>('');
-  const [terminalOutput, setTerminalOutput] = useState<string>('');
-  const [widths, setWidths] = useState<{ editor: number, terminal: number }>({ editor: 0, terminal: 0 });
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [input, setInput] = useState<string>('')
+  const [terminalOutput, setTerminalOutput] = useState<string>('')
+  const [widths, setWidths] = useState<{ editor: number; terminal: number }>({ editor: 0, terminal: 0 })
   const height = getMaxContainerHeight(window.innerHeight) - styles.breadCrumbHeight
 
   useEffect(() => {
@@ -30,26 +29,26 @@ const CodeRunner = (props: Props) => {
       if (containerRef.current) {
         setWidths({
           editor: containerRef.current.clientWidth * 0.7,
-          terminal: containerRef.current.clientWidth * 0.3
-        });
+          terminal: containerRef.current.clientWidth * 0.3,
+        })
       }
-    };
+    }
 
     // Set initial widths
-    handleResize();
+    handleResize()
 
     // Add event listener for window resize
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize)
 
     // Cleanup
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const executeCode = (code: string) => {
-    let timeoutId: ReturnType<typeof setTimeout>;
+    let timeoutId: ReturnType<typeof setTimeout>
 
     // Basic sanitization - remove common network request functions
-    const sanitizedCode = code.replace(/\b(fetch|XMLHttpRequest|axios)\s*\(/g, 'fetchRequest(');
+    const sanitizedCode = code.replace(/\b(fetch|XMLHttpRequest|axios)\s*\(/g, 'fetchRequest(')
 
     const workerScript = `
       self.onmessage = function(e) {
@@ -72,123 +71,126 @@ const CodeRunner = (props: Props) => {
           console.log = originalConsoleLog;
         }
       };
-    `;
+    `
 
-    const worker = new Worker(URL.createObjectURL(new Blob([workerScript], { type: 'application/javascript' })));
+    const worker = new Worker(URL.createObjectURL(new Blob([workerScript], { type: 'application/javascript' })))
 
     worker.onmessage = (e) => {
-      clearTimeout(timeoutId); // Clear the timeout if worker responded
+      clearTimeout(timeoutId) // Clear the timeout if worker responded
       if (e.data.type === 'success') {
-        setTerminalOutput(e.data.result);
+        setTerminalOutput(e.data.result)
       } else {
-        setTerminalOutput(`Error: ${e.data.error}`);
+        setTerminalOutput(`Error: ${e.data.error}`)
       }
-      worker.terminate();
-    };
+      worker.terminate()
+    }
 
     worker.onerror = (e) => {
-      clearTimeout(timeoutId); // Clear the timeout if there was an error
-      setTerminalOutput(`Worker Error: ${e.message}`);
-      worker.terminate();
-    };
+      clearTimeout(timeoutId) // Clear the timeout if there was an error
+      setTerminalOutput(`Worker Error: ${e.message}`)
+      worker.terminate()
+    }
 
-    worker.postMessage(sanitizedCode);
+    worker.postMessage(sanitizedCode)
 
     // Setup a timeout to terminate the worker from the main thread
     timeoutId = setTimeout(() => {
-      worker.terminate();
-      setTerminalOutput('Execution timed out (potential infinite loop, 5000ms timeout).');
-    }, 5000); // 5-second timeout
-  };
+      worker.terminate()
+      setTerminalOutput('Execution timed out (potential infinite loop, 5000ms timeout).')
+    }, 5000) // 5-second timeout
+  }
 
   const handleEditorMount = (editor: monaco.editor.IStandaloneCodeEditor, monaco: MonacoType) => {
-    if (!containerRef.current)
-      return
+    if (!containerRef.current) return
 
     setWidths({
       editor: containerRef.current.clientWidth * 0.6,
-      terminal: containerRef.current.clientWidth * 0.4
-    });
+      terminal: containerRef.current.clientWidth * 0.4,
+    })
 
     editor.addAction({
       id: 'execute-code',
       label: 'Execute Code',
-      keybindings: [
-        monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter,
-      ],
+      keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter],
       run: function (ed) {
-        executeCode(ed.getValue());
-      }
-    });
+        executeCode(ed.getValue())
+      },
+    })
 
     // Load the stored code from localStorage when the component mounts
-    const savedCode = localStorage.getItem('code');
+    const savedCode = localStorage.getItem('code')
     if (savedCode !== null) {
       editor.setValue(savedCode)
-      setInput(savedCode); // Set the saved code into the editor
+      setInput(savedCode) // Set the saved code into the editor
     }
-  };
+  }
 
   /**
    * Localstorage stuff
    */
 
   const saveCodeToLocalStorage = useCallback((code: string) => {
-    localStorage.setItem('code', code);
-  }, []);
+    localStorage.setItem('code', code)
+  }, [])
 
-  const debouncedSave = useCallback(debounce((code: string) => {
-    saveCodeToLocalStorage(code);
-  }, 500), [saveCodeToLocalStorage]);
+  const debouncedSave = useCallback(
+    debounce((code: string) => {
+      saveCodeToLocalStorage(code)
+    }, 500),
+    [saveCodeToLocalStorage],
+  )
 
   const handleEditorChange = (value: string | undefined) => {
     if (value !== undefined) {
-      setInput(value);
-      debouncedSave(value);
+      setInput(value)
+      debouncedSave(value)
     }
-  };
+  }
 
   return (
-    <MainContentContainer h1='JavaScript Code Runner' fullWidth>
+    <MainContentContainer h1="JavaScript Code Runner" fullWidth>
       <div ref={containerRef} className="w-full grow">
-        {widths.editor !== 0 &&
-          <div className='flex w-full grow overflow-hidden'>
+        {widths.editor !== 0 && (
+          <div className="flex w-full grow overflow-hidden">
             {/* Code editor */}
-            <div style={{ width: widths.editor }} className='overflow-hidden'>
+            <div style={{ width: widths.editor }} className="overflow-hidden">
               <Editor
                 value={input}
                 theme="vs-dark"
                 language="javascript"
                 loading={''}
                 onMount={handleEditorMount}
-                width='100%' // Editor will take the full width of its container
+                width="100%" // Editor will take the full width of its container
                 height={height}
                 onChange={(val) => handleEditorChange(val)}
                 options={{
-                  fontSize: 17
+                  fontSize: 17,
                 }}
               />
             </div>
             {/* Terminal */}
-            <div className='leading-5 bg-black/5 whitespace-pre-wrap flex flex-col flex-grow'
+            <div
+              className="flex flex-grow flex-col whitespace-pre-wrap bg-black/5 leading-5"
               style={{ height: height, width: widths.terminal }}
             >
-              <div className='flex items-center justify-start p-2'>
-                <button className='w-fit bg-[#723748] hover:bg-[#CA5160] text-white font-semibold text-2xl px-4 py-2 rounded-lg'
-                  onClick={() => executeCode(input)}>
+              <div className="flex items-center justify-start p-2">
+                <button
+                  className="w-fit rounded-lg bg-[#723748] px-4 py-2 text-2xl font-semibold text-white hover:bg-[#CA5160]"
+                  onClick={() => executeCode(input)}
+                >
                   Run code
                 </button>
               </div>
 
-              <pre className='text-[17px] text-[#CFCBC4] whitespace-pre-line overflow-y-auto w-full px-2 pb-2 grow'
-              >
+              <pre className="w-full grow overflow-y-auto whitespace-pre-line px-2 pb-2 text-[17px] text-[#CFCBC4]">
                 {terminalOutput}
               </pre>
             </div>
-          </div>}
+          </div>
+        )}
       </div>
     </MainContentContainer>
-  );
-};
+  )
+}
 
-export default CodeRunner;
+export default CodeRunner

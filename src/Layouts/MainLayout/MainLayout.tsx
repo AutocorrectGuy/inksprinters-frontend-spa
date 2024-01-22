@@ -26,17 +26,17 @@ export default function MainLayout() {
           className="fixed -z-10 h-screen border-r-2 border-r-[#ffffff54]"
           style={{
             left: styles.sideNavWidth,
-            top: styles.topNavHeigh
+            top: styles.topNavHeigh,
           }}
         />
 
         <img src={GROUND_SVG} className="absolute bottom-0 right-0 -z-10 w-full" />
 
-        {pathname === '/' &&
+        {pathname === '/' && (
           <div className="absolute bottom-0 left-0 right-0 w-full bg-black/30 py-2 text-center text-xl font-bold text-[#cfcbc4]">
             INKSPRINTERS 2023-2024
           </div>
-        }
+        )}
 
         <TopNav />
 

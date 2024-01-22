@@ -22,9 +22,9 @@ const MultiStepModal = () => {
     currentStep! > 0 && setCurrentStep(currentStep! - (stepDecrement ?? 1))
 
   return (
-    <div className="flex flex-col grow min-h-full">
+    <div className="flex min-h-full grow flex-col">
       {currentStep !== null && sheetData ? (
-        <div className="flex flex-col min-h-full grow">
+        <div className="flex min-h-full grow flex-col">
           {/* Render content based on currentStep */}
           {currentStep === 0 && <StepSelectSheet handleNextStep={nextStep} />}
           {currentStep === 1 && <StepSelectColumns handlePreviousStep={previousStep} handleNextStep={nextStep} />}

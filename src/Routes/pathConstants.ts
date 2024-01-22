@@ -19,12 +19,19 @@ const PATH_CONSTANTS = {
 
   // ARTICLE WORKSPACE
   PRINTING_RESOURCES: '/printing-resources',
-  ARTICLES: '/printing-resources/articles',
-  JIGS: '/printing-resources/jigs',
 
-  PRIMERS: '/printing-resources/primers',
-  PRIMERS_ADD: '/printing-resources/primers/add',
-  PRIMERS_VIEW: '/printing-resources/primers/view',
+  ARTICLES_VIEW: '/printing-resources/articles',
+  ARTICLE_ADD: '/printing-resources/article/add',
+  ARTICLE_VIEW: '/printing-resources/article/view',
+
+  JIGS_VIEW: '/printing-resources/jigs',
+  JIG_ADD: '/printing-resources/jig/add',
+  JIG_VIEW: '/printing-resources/jig/view',
+
+  PRIMERS_VIEW: '/printing-resources/primers',
+  PRIMER_ADD: '/printing-resources/primer/add',
+  PRIMER_VIEW: '/printing-resources/primer/view',
+
   /**
    * Development
    */

@@ -24,7 +24,7 @@ const StepSelectSheet = ({ handleNextStep }: StepComponentProps) => {
   }
 
   return (
-    <div className="flex h-full flex-col grow">
+    <div className="flex h-full grow flex-col">
       {/* Content section */}
       <div className={`flex flex-grow overflow-y-auto ${workBook!.sheetNames.length > 5 ? '' : 'items-center'}`}>
         <div className="flex w-full flex-col">

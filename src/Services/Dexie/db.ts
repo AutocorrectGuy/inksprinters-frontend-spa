@@ -37,6 +37,7 @@ export type Primer = {
   name: string
   description: string
 }
+export type ArticleWorkspaceTableNames = 'articles' | 'jigs' | 'primers'
 
 export class ArticleWorkspaceDexie extends Dexie {
   articles!: Table<Article>

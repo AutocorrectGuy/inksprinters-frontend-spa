@@ -7,14 +7,13 @@ const Monaco = () => {
   const [editorText, setEditorText] = useState<string>('hello world')
 
   return (
-    <MainContentContainer h1='Monaco text editor'>
-
+    <MainContentContainer h1="Monaco text editor">
       <div className="flex w-full max-w-7xl grow flex-col overflow-hidden">
         <div className="flex h-full flex-col overflow-hidden">
           <Editor
             value={editorText as string}
             theme="vs-dark"
-            className='grow h-full overflow-hidden'
+            className="h-full grow overflow-hidden"
             language="markdown"
             loading={''}
             width={'100%'}

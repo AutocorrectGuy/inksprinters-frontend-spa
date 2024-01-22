@@ -4,13 +4,11 @@ import MainContentContainer from '../../../Layouts/MainLayout/components/MainLay
 type Props = {}
 
 const CMYKColorPicker = (props: Props) => {
-
-
   return (
-    <MainContentContainer h1='CMYK Color Picker'>
+    <MainContentContainer h1="CMYK Color Picker">
       <div>Color picky boy</div>
     </MainContentContainer>
-  );
-};
+  )
+}
 
 export default CMYKColorPicker

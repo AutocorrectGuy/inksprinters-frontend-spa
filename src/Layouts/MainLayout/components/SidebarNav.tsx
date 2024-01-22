@@ -13,19 +13,17 @@ export const sidebarStyleProps = {
   backgroundImage: `url(${SCRUMBLED_PAPER_JPG})`,
   backgroundRepeat: 'repeat-y',
   backgroundSize: '100% auto',
-  
 }
 const SidebarNav = (props: Props) => {
-
   return (
-    <aside className="fixed z-40 h-screen pt-12" style={{
-      width: styles.sideNavWidth,
-      top: styles.topNavHeigh
-    }}>
-      <div
-        className="mt-16 rounded-r-[24px] outline outline-2 outline-[#cfcbc4d5]"
-        style={{ ...sidebarStyleProps }}
-      >
+    <aside
+      className="fixed z-40 h-screen pt-12"
+      style={{
+        width: styles.sideNavWidth,
+        top: styles.topNavHeigh,
+      }}
+    >
+      <div className="mt-16 rounded-r-[24px] outline outline-2 outline-[#cfcbc4d5]" style={{ ...sidebarStyleProps }}>
         <ul className="text-2xl font-normal text-[#cfcbc4]">
           {siderBarButtons.map((btn, i) => (
             <SidebarNavButton

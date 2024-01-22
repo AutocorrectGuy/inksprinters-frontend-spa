@@ -14,10 +14,10 @@ const HeroInputField = () => {
 
   return (
     <div className="relative flex w-full max-w-[750px] items-center">
-      <img src={RUNNER_SVG} className="absolute right-0 -z-10 translate-x-1/2 overflow-hidden h-[512px]" />
+      <img src={RUNNER_SVG} className="absolute right-0 -z-10 h-[512px] translate-x-1/2 overflow-hidden" />
 
       <div
-        className="flex h-40 w-full items-center rounded-[16px] bg-[#262626] text-[#C7C3BB] outline outline-2 outline-[#666666] focus:border-[#C7C3BB] focus:outline-[#C7C3BB] focus:ring-[#C7C3BB] italic"
+        className="flex h-40 w-full items-center rounded-[16px] bg-[#262626] italic text-[#C7C3BB] outline outline-2 outline-[#666666] focus:border-[#C7C3BB] focus:outline-[#C7C3BB] focus:ring-[#C7C3BB]"
         style={{ ...boxShadow }}
       >
         <div className="flex h-full w-40 items-center justify-center rounded-[16px]">
@@ -30,9 +30,10 @@ const HeroInputField = () => {
             type="text"
             autoFocus
             placeholder="Type keywords here"
-            className={`input m-0 w-full bg-transparent ${inputText.length > 0 ? 'pt-12' : 'pt-4'
-              } rounded-t-[16px] border-0 pb-12 pl-3 text-5xl placeholder:-translate-x-1 
-                font-medium text-white outline-none ring-0 placeholder:text-neutral-400 focus:border-0 focus:outline-none focus:ring-0 placeholder:italic`}
+            className={`input m-0 w-full bg-transparent ${
+              inputText.length > 0 ? 'pt-12' : 'pt-4'
+            } rounded-t-[16px] border-0 pb-12 pl-3 text-5xl font-medium 
+                text-white outline-none ring-0 placeholder:-translate-x-1 placeholder:italic placeholder:text-neutral-400 focus:border-0 focus:outline-none focus:ring-0`}
           />
           {inputText.length === 0 && (
             <div className="absolute -bottom-4 left-4 text-xl font-medium text-neutral-400">
@@ -46,7 +47,6 @@ const HeroInputField = () => {
 }
 
 const Welcome = () => {
-
   return (
     <div className="flex grow flex-col items-center justify-center overflow-hidden pb-40 pr-20">
       <div className="flex w-full items-center justify-center">

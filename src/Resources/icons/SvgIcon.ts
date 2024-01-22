@@ -1,4 +1,4 @@
 export interface SvgIconType {
-  className?: string;
+  className?: string
   paths: string[]
 }

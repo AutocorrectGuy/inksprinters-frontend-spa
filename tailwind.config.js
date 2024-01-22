@@ -1,28 +1,28 @@
-import defaultTheme from "tailwindcss/defaultTheme";
-import daisyui from "daisyui";
+import defaultTheme from 'tailwindcss/defaultTheme'
+import daisyui from 'daisyui'
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{ts,tsx,js,jsx}"],
+  content: ['./src/**/*.{ts,tsx,js,jsx}'],
   theme: {
     extend: {
       fontFamily: {
         // sans: ["Figtree", ...defaultTheme.fontFamily.sans],
-        PlayfairDisplay: ["Playfair Display", ...defaultTheme.fontFamily.sans],
+        PlayfairDisplay: ['Playfair Display', ...defaultTheme.fontFamily.sans],
       },
     },
   },
   daisyui: {
-    themes: ["dark"], // true: all themes | false: only light + dark | array: specific themes like this ["light", "dark", "cupcake"]
-    darkTheme: "dark", // name of one of the included themes for dark mode
+    themes: ['dark'], // true: all themes | false: only light + dark | array: specific themes like this ["light", "dark", "cupcake"]
+    darkTheme: 'dark', // name of one of the included themes for dark mode
     base: true, // applies background color and foreground color for root element by default
     styled: true, // include daisyUI colors and design decisions for all components
     utils: true, // adds responsive and modifier utility classes
     rtl: false, // rotate style direction from left-to-right to right-to-left. You also need to add dir="rtl" to your html tag and install `tailwindcss-flip` plugin for Tailwind CSS.
-    prefix: "", // prefix for daisyUI classnames (components, modifiers and responsive class names. Not colors)
+    prefix: '', // prefix for daisyUI classnames (components, modifiers and responsive class names. Not colors)
     logs: true, // Shows info about daisyUI version and used config in the console when building your CSS
   },
 
   plugins: [daisyui],
-  darkMode: "class",
-};
+  darkMode: 'class',
+}

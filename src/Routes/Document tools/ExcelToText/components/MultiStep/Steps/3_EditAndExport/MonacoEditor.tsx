@@ -58,7 +58,7 @@ const MonacoEditor = () => {
     <div className="flex-grow">
       {isThemeLoaded ? (
         <div className="flex h-full flex-col">
-          <div role="tablist" className="tabs-lifted tabs gap-1">
+          <div role="tablist" className="tabs tabs-lifted gap-1">
             {selectedCols.length > 1 &&
               selectedCols.map((i) => (
                 <div
