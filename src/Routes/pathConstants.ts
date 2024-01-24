@@ -21,16 +21,16 @@ const PATH_CONSTANTS = {
   PRINTING_RESOURCES: '/printing-resources',
 
   ARTICLES_VIEW: '/printing-resources/articles',
-  ARTICLE_ADD: '/printing-resources/article/add',
-  ARTICLE_VIEW: '/printing-resources/article/view',
+  ARTICLE_ADD: '/printing-resources/articles/add',
+  ARTICLE_VIEW: '/printing-resources/articles/view',
 
   JIGS_VIEW: '/printing-resources/jigs',
-  JIG_ADD: '/printing-resources/jig/add',
-  JIG_VIEW: '/printing-resources/jig/view',
+  JIG_ADD: '/printing-resources/jigs/add',
+  JIG_VIEW: '/printing-resources/jigs/view',
 
   PRIMERS_VIEW: '/printing-resources/primers',
-  PRIMER_ADD: '/printing-resources/primer/add',
-  PRIMER_VIEW: '/printing-resources/primer/view',
+  PRIMER_ADD: '/printing-resources/primers/add',
+  PRIMER_VIEW: '/printing-resources/primers/view',
 
   /**
    * Development

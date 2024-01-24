@@ -15,15 +15,9 @@ import CodeRunner from './Routes/Development/Code Runner/CodeRunner'
 import TodosList from './Routes/Development/Todos List/TodosList'
 import CodingExercises from './Routes/Development/Coding Exercises/CodingExercises'
 import PrintingResources from './Routes/Printing Resources/PrintingResources'
-import PrimersView from './Routes/Printing Resources/Primers/PrimersView'
-import PrimerAdd from './Routes/Printing Resources/Primers/PrimerAdd'
-import PrimerView from './Routes/Printing Resources/Primers/PrimerView'
-import JigsView from './Routes/Printing Resources/Jigs/JigsView'
-import JigAdd from './Routes/Printing Resources/Jigs/JigAdd'
-import JigView from './Routes/Printing Resources/Jigs/JigView'
-import ArticlesView from './Routes/Printing Resources/Articles/ArticlesView'
-import ArticleAdd from './Routes/Printing Resources/Articles/ArticleAdd'
-import ArticleView from './Routes/Printing Resources/Articles/ArticleView'
+import EntryView from './Routes/Printing Resources/CRUD Templates/EntryView'
+import EntriesView from './Routes/Printing Resources/CRUD Templates/EntriesView'
+import EntryAdd from './Routes/Printing Resources/CRUD Templates/EntryAdd'
 
 const router = createBrowserRouter([
   {
@@ -88,43 +82,43 @@ const router = createBrowserRouter([
       // Articles
       {
         path: PATH_CONSTANTS.ARTICLES_VIEW,
-        element: <ArticlesView />,
+        element: <EntriesView tableName='articles' />,
       },
       {
         path: PATH_CONSTANTS.ARTICLE_ADD,
-        element: <ArticleAdd />,
+        element: <EntryAdd tableName='articles' />
       },
       {
         path: PATH_CONSTANTS.ARTICLE_VIEW,
-        element: <ArticleView />,
+        element: <EntryView tableName='articles' />,
       },
 
       // Jigs
       {
         path: PATH_CONSTANTS.JIGS_VIEW,
-        element: <JigsView />,
+        element: <EntriesView tableName='jigs' />,
       },
       {
         path: PATH_CONSTANTS.JIG_ADD,
-        element: <JigAdd />,
+        element: <EntryAdd tableName='jigs' />
       },
       {
         path: PATH_CONSTANTS.JIG_VIEW,
-        element: <JigView />,
+        element: <EntryView tableName='jigs' />,
       },
 
       // Primers
       {
         path: PATH_CONSTANTS.PRIMERS_VIEW,
-        element: <PrimersView />,
+        element: <EntriesView tableName='primers' />,
       },
       {
         path: PATH_CONSTANTS.PRIMER_ADD,
-        element: <PrimerAdd />,
+        element: <EntryAdd tableName='primers' />,
       },
       {
         path: PATH_CONSTANTS.PRIMER_VIEW,
-        element: <PrimerView />,
+        element: <EntryView tableName='primers' />,
       },
 
       /**
