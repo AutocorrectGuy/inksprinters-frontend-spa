@@ -1,14 +1,13 @@
 import GROUND_SVG from '../../Resources/images/Pages/Welcome/inksprinters-ground.svg'
-
 import HEXAGONS from '../../Resources/images/Pages/Welcome/hexagons.svg'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { IconDefinition, faCaretRight } from '@fortawesome/free-solid-svg-icons'
-import { styles } from './config/MainLayout.config'
-import { Link, Outlet, useLocation } from 'react-router-dom'
 import TopNav from './components/TopNav'
 import SidebarNav from './components/SidebarNav'
+import { styles } from './config/MainLayout.config'
+import { Outlet, useLocation } from 'react-router-dom'
+import { sideBarButtons } from './config/SidebarNav.config'
+import CustomToastContainer from '../../Components/Toast/CustomToastContainer'
 
-export default function MainLayout() {
+const MainLayout = () => {
   const { pathname } = useLocation()
 
   return (
@@ -41,7 +40,7 @@ export default function MainLayout() {
         <TopNav />
 
         {/* Sidebar nav */}
-        <SidebarNav />
+        <SidebarNav sideBarButtons={sideBarButtons} />
 
         {/* Main content */}
         <div
@@ -54,6 +53,9 @@ export default function MainLayout() {
           <Outlet />
         </div>
       </div>
+      <CustomToastContainer />
     </>
   )
 }
+
+export default MainLayout

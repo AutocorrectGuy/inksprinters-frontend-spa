@@ -15,9 +15,10 @@ import CodeRunner from './Routes/Development/Code Runner/CodeRunner'
 import TodosList from './Routes/Development/Todos List/TodosList'
 import CodingExercises from './Routes/Development/Coding Exercises/CodingExercises'
 import PrintingResources from './Routes/Printing Resources/PrintingResources'
-import EntryView from './Routes/Printing Resources/CRUD Templates/EntryView'
-import EntriesView from './Routes/Printing Resources/CRUD Templates/EntriesView'
-import EntryAdd from './Routes/Printing Resources/CRUD Templates/EntryAdd'
+import ViewMany from './Routes/Printing Resources/Primers/ViewMany'
+import Generate from './Routes/Printing Resources/Primers/Generate'
+import ViewSingle from './Routes/Printing Resources/Primers/ViewSingle'
+import Create from './Routes/Printing Resources/Primers/Create'
 
 const router = createBrowserRouter([
   {
@@ -39,15 +40,15 @@ const router = createBrowserRouter([
        * Document tools
        */
       {
-        path: PATH_CONSTANTS.DOCUMENT_TOOLS,
+        path: PATH_CONSTANTS.DOCUMENT_TOOLS.ROOT,
         element: <DocumentTools />,
       },
       {
-        path: PATH_CONSTANTS.EXCEL_CONVERTER,
+        path: PATH_CONSTANTS.DOCUMENT_TOOLS.EXCEL_CONVERTER,
         element: <ExcelToText />,
       },
       {
-        path: PATH_CONSTANTS.CODE_EDITOR,
+        path: PATH_CONSTANTS.DOCUMENT_TOOLS.CODE_EDITOR,
         element: <Monaco />,
       },
 
@@ -55,93 +56,66 @@ const router = createBrowserRouter([
        * PRINTING tools
        */
       {
-        path: PATH_CONSTANTS.PRINTING_TOOLS,
+        path: PATH_CONSTANTS.PRINTING_TOOLS.ROOT,
         element: <PrintingTools />,
       },
       {
-        path: PATH_CONSTANTS.CENTER_ARTWORK,
+        path: PATH_CONSTANTS.PRINTING_TOOLS.CENTER_ARTWORK,
         element: <CenterArtwork />,
       },
       {
-        path: PATH_CONSTANTS.RECALIBRATE_ARTICLE_POSITION,
+        path: PATH_CONSTANTS.PRINTING_TOOLS.RECALIBRATE_ARTICLE_POSITION,
         element: <ArtworkCalibration />,
       },
       {
-        path: PATH_CONSTANTS.CMYK_Color_PICKER,
+        path: PATH_CONSTANTS.PRINTING_TOOLS.CMYK_Color_PICKER,
         element: <CMYKColorPicker />,
       },
 
       /**
-       * Printing resources archieve
+       * Printing resources archive
        */
       {
-        path: PATH_CONSTANTS.PRINTING_RESOURCES,
+        path: PATH_CONSTANTS.PRINTING_RESOURCES.ROOT,
         element: <PrintingResources />,
       },
-
-      // Articles
       {
-        path: PATH_CONSTANTS.ARTICLES_VIEW,
-        element: <EntriesView tableName='articles' />,
+        path: PATH_CONSTANTS.PRINTING_RESOURCES.PRIMERS.VIEW_SINGLE,
+        element: <ViewSingle />
       },
       {
-        path: PATH_CONSTANTS.ARTICLE_ADD,
-        element: <EntryAdd tableName='articles' />
+        path: PATH_CONSTANTS.PRINTING_RESOURCES.PRIMERS.VIEW_MANY,
+        element: <ViewMany />
       },
       {
-        path: PATH_CONSTANTS.ARTICLE_VIEW,
-        element: <EntryView tableName='articles' />,
-      },
-
-      // Jigs
-      {
-        path: PATH_CONSTANTS.JIGS_VIEW,
-        element: <EntriesView tableName='jigs' />,
+        path: PATH_CONSTANTS.PRINTING_RESOURCES.PRIMERS.CREATE,
+        element: <Create />
       },
       {
-        path: PATH_CONSTANTS.JIG_ADD,
-        element: <EntryAdd tableName='jigs' />
+        path: PATH_CONSTANTS.PRINTING_RESOURCES.PRIMERS.GENERATE,
+        element: <Generate />
       },
-      {
-        path: PATH_CONSTANTS.JIG_VIEW,
-        element: <EntryView tableName='jigs' />,
-      },
-
-      // Primers
-      {
-        path: PATH_CONSTANTS.PRIMERS_VIEW,
-        element: <EntriesView tableName='primers' />,
-      },
-      {
-        path: PATH_CONSTANTS.PRIMER_ADD,
-        element: <EntryAdd tableName='primers' />,
-      },
-      {
-        path: PATH_CONSTANTS.PRIMER_VIEW,
-        element: <EntryView tableName='primers' />,
-      },
-
       /**
-       * Development
-       */
+      * Development
+      */
       {
-        path: PATH_CONSTANTS.DEVELOPMENT,
+        path: PATH_CONSTANTS.DEVELOPMENT.ROOT,
         element: <Development />,
       },
       {
-        path: PATH_CONSTANTS.CODE_RUNNER,
+        path: PATH_CONSTANTS.DEVELOPMENT.CODE_RUNNER,
         element: <CodeRunner />,
       },
       {
-        path: PATH_CONSTANTS.CODE_EXERCISES,
+        path: PATH_CONSTANTS.DEVELOPMENT.CODE_EXERCISES,
         element: <CodingExercises />,
       },
       {
-        path: PATH_CONSTANTS.TODOS,
+        path: PATH_CONSTANTS.DEVELOPMENT.TODOS,
         element: <TodosList />,
       },
     ],
-  },
+  }
 ])
 
 const App = () => {

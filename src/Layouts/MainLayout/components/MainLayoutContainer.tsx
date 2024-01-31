@@ -1,7 +1,6 @@
 import { ReactNode } from 'react'
 import { useLocation } from 'react-router-dom'
 import { getMaxContainerHeight, styles } from '../config/MainLayout.config'
-import CustomToastContainer from '../../../Components/Toast/CustomToastContainer'
 import Breadcrumbs from './BreadCrumbs'
 import SCRUMBLED_PAPER_JPG from '../../../Resources/images/Pages/Welcome/scrumbled-paper.png'
 
@@ -77,25 +76,30 @@ const MainContentContainer = ({
         </div>
 
         {/* Content */}
-        <div
-          className="grow overflow-y-auto rounded-lg border border-[#9da3a3] leading-8 text-[#e7e4db]"
-          style={{ height: MAX_CONTENT_HEIGHT - (hasBreadCrumb ? styles.breadCrumbHeight : 0) }}
-        >
-          <div className="relative flex h-auto min-h-full grow flex-col rounded-lg">
-            <div className="absolute bottom-0 left-0 right-0 top-0 -z-10 bg-gradient-to-b from-[#0004040F] to-black opacity-90" />
-            <div
-              className="absolute bottom-0 left-0 right-0 top-0 -z-10 opacity-[10%]"
-              style={{
-                backgroundImage: `url(${SCRUMBLED_PAPER_JPG})`,
-                backgroundRepeat: 'repeat',
-                backgroundSize: `100% 100%`, // Let background size adjust automatically
-              }}
-            />
-            {children}
+        <div className='grow relative'>
+          <div
+            className="grow overflow-y-auto rounded-lg border border-[#9da3a3] leading-8 text-[#e7e4db]"
+            style={{ height: MAX_CONTENT_HEIGHT - (hasBreadCrumb ? styles.breadCrumbHeight : 0) }}
+          >
+            <div className="relative flex h-auto min-h-full grow flex-col rounded-lg">
+
+              <div
+                className="absolute bottom-0 left-0 right-0 top-0 -z-10 opacity-[10%]"
+                style={{
+                  backgroundImage: `url(${SCRUMBLED_PAPER_JPG})`,
+                  backgroundRepeat: 'repeat',
+                  backgroundSize: `100% 100%`, 
+                }}
+              />
+              {children}
+            </div>
           </div>
+          <div className="absolute bottom-0 left-0 right-0 top-0 -z-10 bg-gradient-to-b from-[#80ffe310] to-black opacity-80"
+            style={{ height: MAX_CONTENT_HEIGHT - (hasBreadCrumb ? styles.breadCrumbHeight : 0) }}
+          />
         </div>
+
       </div>
-      <CustomToastContainer />
     </div>
   )
 }

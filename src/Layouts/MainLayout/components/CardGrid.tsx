@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import { SiderBarButtonProps } from '../types'
-import { siderBarButtons } from '../config/SidebarNav.config'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { SideBarButtonProps } from '../types'
+import { sideBarButtons } from '../config/SidebarNav.config'
 
-export type CardSetName = 'Document tools' | 'Printing tools' | 'Printing Resources' | 'Development'
+export type CardSetName = 'Document tools' | 'Printing tools' | 'Printing Resources' | 'Development' | 'Rēķini'
 
 type Props = {
-  cardsetName: CardSetName
-}
+  cardsetName: CardSetName;
+  columnCount?: number;
+  rowCount?: number;
+};
 
-const getChildrenByLabel = (buttons: SiderBarButtonProps[], label: string): SiderBarButtonProps[] | undefined => {
+const getChildrenByLabel = (buttons: SideBarButtonProps[], label: string): SideBarButtonProps[] | undefined => {
   // Helper function for recursive search
-  const findRecursive = (items: SiderBarButtonProps[]): SiderBarButtonProps[] | undefined => {
+  const findRecursive = (items: SideBarButtonProps[]): SideBarButtonProps[] | undefined => {
     for (const item of items) {
       if (item.label === label) {
         return item.children
@@ -32,18 +34,29 @@ const getChildrenByLabel = (buttons: SiderBarButtonProps[], label: string): Side
 
 export const CARD_CLASS_NAME =
   'flex flex-col bg-white/5 hover:bg-white/10 hover:shadow-none shadow-2xl rounded-lg border border-[#cfcbc41a] flex-grow p-4 cursor-pointer'
-const CardGrid = ({ cardsetName }: Props) => {
-  const [cards, _setCards] = useState<SiderBarButtonProps[] | undefined>(
-    getChildrenByLabel(siderBarButtons, cardsetName),
+
+
+const CardGrid = ({ cardsetName, columnCount = 2, rowCount = 2 }: Props) => {
+  const [cards, _setCards] = useState<SideBarButtonProps[] | undefined>(
+    getChildrenByLabel(sideBarButtons, cardsetName),
   )
 
+
+  // Inline style for grid layout columns and rows
+  const gridStyle = {
+    gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))`,
+    gridTemplateRows: `repeat(${rowCount}, minmax(0, 1fr))`,
+  };
+
   return (
-    <div className="grid grow grid-cols-3 grid-rows-3 gap-4 p-4">
+    <div className="grid gap-4 p-4 grow" style={gridStyle}>
       {cards?.map((card, i) => (
-        <Link to={card.href} key={`document-card-card-${i}`} className={twMerge(CARD_CLASS_NAME, card.cardStyles)}>
-          <FontAwesomeIcon icon={card.icon} className="max-h-20 grow" />
+        <Link to={card.href} key={`document-card-${i}`} className={twMerge(CARD_CLASS_NAME, card.cardStyles)}>
+          <div className='flex flex-col grow items-center justify-center'>
+            <FontAwesomeIcon icon={card.icon} className="grow max-h-[50%]" />
+          </div>
           <div className="flex flex-col justify-end text-[#CFCBC4]">
-            <h3 className="pt-4 text-xl font-bold">{card.label}</h3>
+            <h3 className="pt-4 text-2xl font-bold">{card.label}</h3>
             <p className="text-md min-h-12 font-thin leading-5">{card?.description}</p>
           </div>
         </Link>

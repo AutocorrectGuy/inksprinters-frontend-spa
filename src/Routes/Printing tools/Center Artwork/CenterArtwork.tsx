@@ -85,7 +85,7 @@ const CenterArtwork = (props: Props) => {
           <div className="flex flex-grow items-center justify-between rounded-lg bg-purple-900 p-1">
             <div className="px-3">Calculated position</div>
             <div className="flex items-center">
-              <input className="input input-bordered h-10 w-16" value={calculatedPosition} />
+              <input className="input input-bordered h-10 w-16" value={calculatedPosition} onChange={() => {}}/>
               <div className="w-9 text-center">mm</div>
             </div>
           </div>

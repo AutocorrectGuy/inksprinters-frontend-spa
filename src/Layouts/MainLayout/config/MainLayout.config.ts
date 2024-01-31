@@ -6,6 +6,7 @@ export const styles = {
     h1Height: 60,
     margin: 20,
   },
+  buttonHeight: 48,
   breadCrumbHeight: 48,
 }
 

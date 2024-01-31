@@ -1,12 +1,12 @@
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { ReactNode } from 'react'
 
-export type SiderBarButtonProps = {
+export type SideBarButtonProps = {
   icon: IconDefinition
   label: string
   description?: string
   href: string
-  children?: SiderBarButtonProps[]
+  children?: SideBarButtonProps[]
   cardStyles?: string
 } & {
   isFirstChild?: boolean
