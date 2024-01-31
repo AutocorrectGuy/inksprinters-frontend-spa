@@ -23,8 +23,13 @@ const LatestPrimers = () => {
     const fetchLatestPrimers = async () => {
       setLoading(true);
       const offset = (currentPage - 1) * PAGE_SIZE;
-      const latestPrimers = await db.primers.orderBy('created_at').reverse().offset(offset).limit(PAGE_SIZE).toArray();
       const totalCount = await db.primers.count();
+      if (!totalCount) {
+        setLoading(false)
+        return
+      }
+
+      const latestPrimers = await db.primers.orderBy('created_at').reverse().offset(offset).limit(PAGE_SIZE).toArray();
       setPrimers(latestPrimers);
       setTotalPrimers(totalCount);
       setLoading(false);
@@ -85,12 +90,12 @@ const LatestPrimers = () => {
 
   return (
     <MainContentContainer h1='Primers'>
+      <ToolbarTab />
       {loading
         ? <LoadingSpinner />
         : (!primers.length
           ? <ItemNotFound itemName='primers' />
           : <div className='flex flex-col'>
-            <ToolbarTab />
             <PrimersTable primers={primers} />
             <Pagination />
           </div>
