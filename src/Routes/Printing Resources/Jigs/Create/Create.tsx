@@ -81,7 +81,7 @@ const Create = () => {
     name,
     value: displayValueRef.current[name],
     onChange: onNumberChange,
-    onBlur: name === 'count' ? () => { } : onNumberBlur,
+    onBlur: name === 'count' ? () => {} : onNumberBlur,
   })
 
   return (
