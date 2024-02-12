@@ -42,7 +42,7 @@ const MainContentContainer = ({
         marginBottom: styles.contentContainer.margin,
       }}
     >
-      <div className={`${fullWidth ? 'w-full px-8' : 'max-w-5xl'} mx-auto flex w-full grow flex-col`}>
+      <div className={`${fullWidth ? 'w-full px-8' : 'max-w-6xl'} mx-auto flex w-full grow flex-col`}>
         {/* Navigation */}
         {hasBreadCrumb && (
           <Breadcrumbs

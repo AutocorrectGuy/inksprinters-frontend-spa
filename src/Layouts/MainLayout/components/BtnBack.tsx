@@ -11,7 +11,7 @@ const BtnBack = ({ to }: Props) => {
   return (
     <Link
       to={to}
-      className="btn flex items-center border border-[#CA5160] bg-neutral-500/10 text-[#CFCBC4] hover:bg-[#CA5160] hover:text-white"
+      className="btn flex w-24 items-center border border-[#CA5160] bg-neutral-500/10 text-[#CFCBC4] hover:bg-[#CA5160] hover:text-white"
     >
       <FontAwesomeIcon icon={faCaretLeft} className="h-6" />
       <div className="text-lg">Back</div>

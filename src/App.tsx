@@ -15,10 +15,16 @@ import CodeRunner from './Routes/Development/Code Runner/CodeRunner'
 import TodosList from './Routes/Development/Todos List/TodosList'
 import CodingExercises from './Routes/Development/Coding Exercises/CodingExercises'
 import PrintingResources from './Routes/Printing Resources/PrintingResources'
-import ViewMany from './Routes/Printing Resources/Primers/ViewMany'
-import Generate from './Routes/Printing Resources/Primers/Generate'
-import ViewSingle from './Routes/Printing Resources/Primers/ViewSingle'
-import Create from './Routes/Printing Resources/Primers/Create'
+import PrimerViewMany from './Routes/Printing Resources/Primers/ViewMany'
+import PrimerGenerate from './Routes/Printing Resources/Primers/Generate'
+import PrimerViewSingle from './Routes/Printing Resources/Primers/ViewSingle'
+import PrimerCreate from './Routes/Printing Resources/Primers/Create'
+import JigViewMany from './Routes/Printing Resources/Jigs/ViewMany'
+import JigViewSingle from './Routes/Printing Resources/Jigs/ViewSingle'
+import JigCreate from './Routes/Printing Resources/Jigs/Create/Create'
+import ArticleViewMany from './Routes/Printing Resources/Articles/ViewMany'
+import ArticleViewSingle from './Routes/Printing Resources/Articles/ViewSingle'
+import ArticleCreate from './Routes/Printing Resources/Articles/Create'
 
 const router = createBrowserRouter([
   {
@@ -79,22 +85,53 @@ const router = createBrowserRouter([
         path: PATH_CONSTANTS.PRINTING_RESOURCES.ROOT,
         element: <PrintingResources />,
       },
+
+      // Primers
       {
         path: PATH_CONSTANTS.PRINTING_RESOURCES.PRIMERS.VIEW_SINGLE,
-        element: <ViewSingle />
+        element: <PrimerViewSingle />
       },
       {
         path: PATH_CONSTANTS.PRINTING_RESOURCES.PRIMERS.VIEW_MANY,
-        element: <ViewMany />
+        element: <PrimerViewMany />
       },
       {
         path: PATH_CONSTANTS.PRINTING_RESOURCES.PRIMERS.CREATE,
-        element: <Create />
+        element: <PrimerCreate />
       },
       {
         path: PATH_CONSTANTS.PRINTING_RESOURCES.PRIMERS.GENERATE,
-        element: <Generate />
+        element: <PrimerGenerate />
       },
+
+      // Jigs
+      {
+        path: PATH_CONSTANTS.PRINTING_RESOURCES.JIGS.VIEW_SINGLE,
+        element: <JigViewSingle />
+      },
+      {
+        path: PATH_CONSTANTS.PRINTING_RESOURCES.JIGS.VIEW_MANY,
+        element: <JigViewMany />
+      },
+      {
+        path: PATH_CONSTANTS.PRINTING_RESOURCES.JIGS.CREATE,
+        element: <JigCreate />
+      },
+
+      // Articles
+      {
+        path: PATH_CONSTANTS.PRINTING_RESOURCES.ARTICLES.VIEW_SINGLE,
+        element: <ArticleViewSingle />
+      },
+      {
+        path: PATH_CONSTANTS.PRINTING_RESOURCES.ARTICLES.VIEW_MANY,
+        element: <ArticleViewMany />
+      },
+      {
+        path: PATH_CONSTANTS.PRINTING_RESOURCES.ARTICLES.CREATE,
+        element: <ArticleCreate />
+      },
+
       /**
       * Development
       */

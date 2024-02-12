@@ -8,23 +8,13 @@ export type Primer = {
 }
 
 // Define the DexieJsTable for Primer
-export const primerSpecs: DexieJsTable<Primer> = {
-  id: {
-    type: 'number',
-    validation: [],
-    autoIncrement: true,
-  },
+export const primerModel: DexieJsTable<Primer> = {
+  id: { type: 'number', validation: [], autoIncrement: true },
   name: {
     type: 'string',
-    validation: ['isAlpha', 'isRequired'],
+    validation: ['isValidText', 'isRequired'],
     unique: true,
   },
-  description: {
-    type: 'string',
-    validation: ['isRequired'],
-  },
-  created_at: {
-    type: 'number',
-    validation: [],
-  },
+  description: { type: 'string', validation: ['isValidText'] },
+  created_at: { type: 'number', validation: ['isNumeric'] },
 }

@@ -4,13 +4,13 @@ import { db } from '../../../libraries/dexie/db'; // Import your Dexie instance
 import MainContentContainer from '../../../Layouts/MainLayout/components/MainLayoutContainer';
 import PATH_CONSTANTS from '../../pathConstants';
 import { toast } from 'react-toastify';
-import { customToastProps } from '../../../Components/Toast/CustomToastContainer';
+import { customToastProps } from '../../../libraries/toast/CustomToastContainer';
 import BtnBack from '../../../Layouts/MainLayout/components/BtnBack';
-import { primerSpecs } from '../../../libraries/dexie/models/primer.model';
 import { validateData } from '../../../libraries/dexie/utils/validation';
+import { Primer, primerModel } from '../../../libraries/dexie/models/primer.model';
 
 const Create = () => {
-  const [formData, setFormData] = useState({ name: '', description: '' });
+  const [formData, setFormData] = useState<Primer>({ name: '', description: '', created_at: 0 });
   const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -28,17 +28,12 @@ const Create = () => {
         ...formData,
         created_at: new Date().getTime(),
       }
-      validateData(primerToAdd, primerSpecs)
+      validateData(primerToAdd, primerModel)
       
-      await db.primers.add({
-        ...formData,
-        created_at: new Date().getTime(),
-      });
+      await db.primers.add(primerToAdd);
       toast.success(`Primer ${formData.name} added successfully!`, customToastProps)
       navigate(PATH_CONSTANTS.PRINTING_RESOURCES.PRIMERS.VIEW_MANY); // Redirect to viewMany component
     } catch (error) {
-      console.error(error);
-      // Convert error to a string message
       const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred';
       toast.error(errorMessage, customToastProps);
     }

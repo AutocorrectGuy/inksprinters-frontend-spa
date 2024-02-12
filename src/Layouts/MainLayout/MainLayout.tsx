@@ -5,7 +5,7 @@ import SidebarNav from './components/SidebarNav'
 import { styles } from './config/MainLayout.config'
 import { Outlet, useLocation } from 'react-router-dom'
 import { sideBarButtons } from './config/SidebarNav.config'
-import CustomToastContainer from '../../Components/Toast/CustomToastContainer'
+import CustomToastContainer from '../../libraries/toast/CustomToastContainer'
 
 const MainLayout = () => {
   const { pathname } = useLocation()

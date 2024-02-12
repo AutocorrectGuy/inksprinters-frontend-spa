@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify'
-import { customToastProps } from '../../../../../Components/Toast/CustomToastContainer'
+import { customToastProps } from '../../../../../libraries/toast/CustomToastContainer'
 
 export const handleCopy = (inputText: string) => {
   navigator.clipboard

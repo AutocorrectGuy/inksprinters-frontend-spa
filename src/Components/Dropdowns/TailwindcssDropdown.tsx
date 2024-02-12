@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
-import { v4 as uuidv4 } from 'uuid'
 
 type Props = {
   items: string[]
@@ -12,7 +11,6 @@ type Props = {
 }
 
 const TailwindcssDropdown = ({ items, selectedItem, onSelect, label, labelClassName }: Props) => {
-  const [uuid, _uuid] = useState(uuidv4())
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
@@ -32,7 +30,7 @@ const TailwindcssDropdown = ({ items, selectedItem, onSelect, label, labelClassN
   return (
     <div
       ref={dropdownRef}
-      className={`${label ? 'group flex flex-grow cursor-pointer items-center justify-between rounded-lg bg-base-300' : ''}`}
+      className={`${label ? 'group flex flex-grow w-full border border-red-500 cursor-pointer items-center justify-between rounded-lg bg-base-300' : ''}`}
       onClick={toggleDropdown}
     >
       {/* Label */}

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Primer, primerSpecs } from '../../../libraries/dexie/models/primer.model';
+import { Primer, primerModel,  } from '../../../libraries/dexie/models/primer.model';
 import { insertMockData } from '../../../libraries/dexie/utils/seed/seeder';
 import { db } from '../../../libraries/dexie/db';
 
@@ -8,7 +8,7 @@ const Generate = () => {
   const [primers, setPrimers] = useState<Primer[]>([]);
 
   const handleGenerate = async () => {
-    await insertMockData(db.primers, primerSpecs, entryCount);
+    await insertMockData(db.primers, primerModel, entryCount);
 
     const allPrimers = await db.primers.toArray();
     setPrimers(allPrimers);

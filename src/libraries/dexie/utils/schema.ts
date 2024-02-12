@@ -1,7 +1,7 @@
 import { ValidationFunctionKey } from './validation'
 
 export type DexieJsTableColumn = {
-  type: 'string' | 'number' | 'image'
+  type: 'string' | 'number' | 'image' | 'boolean'
   validation?: ValidationFunctionKey[]
   autoIncrement?: boolean
   unique?: boolean

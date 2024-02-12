@@ -3,7 +3,7 @@ import { WorkbookType } from '../../contexts/ExcelToTextContext'
 import { extractColumn } from './processData'
 import { AppSettingsType } from '../../config/TextEditorSettings'
 import * as XLSX from 'xlsx'
-import { customToastProps } from '../../../../../Components/Toast/CustomToastContainer'
+import { customToastProps } from '../../../../../libraries/toast/CustomToastContainer'
 
 export const sanitizeSheetData = (cells: string[][]) => {
   // Determine the number of columns
