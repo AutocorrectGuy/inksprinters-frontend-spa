@@ -6,50 +6,37 @@ import PATH_CONSTANTS from "../../../pathConstants"
 import { customToastProps } from "../../../../libraries/toast/CustomToastContainer"
 import { NavigateFunction } from "react-router-dom"
 import { ChangeEvent, Dispatch, FormEvent, MutableRefObject, SetStateAction } from "react"
+import { carveOutNumberValue, clampNumber } from "./utils/numberSanitaze"
 
 type InputEventType = { e: ChangeEvent<HTMLInputElement> }
 type FromEventType = { e: FormEvent<HTMLFormElement> }
-
 type HandleInputType = {
   setFormData: Dispatch<SetStateAction<Jig>>
   displayValueRef: MutableRefObject<{ [key: string]: string }>
+  clamp?: { min: number, max: number }
 }
-
 type HandleSubmitType = {
   formData: Jig
   navigate: NavigateFunction
 } & FromEventType
 
-// Returns then number from string with regex
-export const sanitizeStringToNumberAsString = (input: string) => {
-  if (!input.trim())
-    return 0
 
-  const match = /-?\d*\.?\d+/.exec(input)
-  if (!match)
-    return 0
-
-  const num = parseFloat(match[0])
-  if (!isNaN(num) && isFinite(num))
-    return num.toString()
-
-  return 0
-}
-
-export const handleOnChangeNumber = ({ e, setFormData, displayValueRef }: HandleInputType & InputEventType) => {
+export const handleOnChangeNumber = ({ e, setFormData, displayValueRef, clamp }: HandleInputType & InputEventType) => {
   const name = e.target.name as keyof Jig
-  const value = sanitizeStringToNumberAsString(e.target.value)
+  const carvedNumber = carveOutNumberValue(e.target.value)
+  const clampedNumber = clampNumber(carvedNumber, clamp)
 
   displayValueRef.current[name] = e.target.value
-  setFormData((formData) => ({ ...formData, [name]: value }));
+  setFormData((formData) => ({ ...formData, [name]: clampedNumber }));
 }
 
-export const handleOnBlur = ({ e, setFormData, displayValueRef }: HandleInputType & InputEventType) => {
+export const handleOnBlurNumber = ({ e, setFormData, displayValueRef, addMm }: HandleInputType & InputEventType & { addMm?: boolean }) => {
   const name = e.target.name as keyof Jig
 
   // force reremder on losing focus of the inputfield
   setFormData((formData) => {
-    displayValueRef.current[name] = `${formData[name]} mm`
+    const displayNumber = `${formData[name]}`
+    displayValueRef.current[name] = addMm ? `${displayNumber} mm` : displayNumber
     return ({ ...formData })
   })
 };

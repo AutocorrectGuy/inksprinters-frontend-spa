@@ -3,13 +3,14 @@ import 'react-toastify/dist/ReactToastify.css'
 
 export const customToastProps: ToastOptions = {
   position: 'top-right',
-  autoClose: 3000,
+  autoClose: 10000,
   hideProgressBar: true,
   closeOnClick: true,
   pauseOnHover: true,
   draggable: false,
   progress: undefined,
   theme: 'dark',
+  style: { zIndex: 9999 },
 }
 
 const CustomToastContainer = () => (
@@ -24,7 +25,7 @@ const CustomToastContainer = () => (
     draggable={false}
     pauseOnHover
     theme="dark"
-    style={{ zIndex: 9999 }}
+    style={{ zIndex: 10000 }}
   />
 )
 

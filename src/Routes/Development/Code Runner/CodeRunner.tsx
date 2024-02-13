@@ -22,7 +22,7 @@ const CodeRunner = (props: Props) => {
   const [input, setInput] = useState<string>('')
   const [terminalOutput, setTerminalOutput] = useState<string>('')
   const [widths, setWidths] = useState<{ editor: number; terminal: number }>({ editor: 0, terminal: 0 })
-  const height = getMaxContainerHeight(window.innerHeight) - styles.breadCrumbHeight
+  const height = getMaxContainerHeight() - styles.breadCrumbHeight
 
   useEffect(() => {
     const handleResize = () => {

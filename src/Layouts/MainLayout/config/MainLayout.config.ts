@@ -10,5 +10,5 @@ export const styles = {
   breadCrumbHeight: 48,
 }
 
-export const getMaxContainerHeight = (windowHeight: number) =>
-  windowHeight - styles.topNavHeigh - styles.contentContainer.h1Height - 3 * styles.contentContainer.margin - 2 // 2px borders
+export const getMaxContainerHeight = () =>
+  window.innerHeight - styles.topNavHeigh - styles.contentContainer.h1Height - 3 * styles.contentContainer.margin - 2 // 2px borders

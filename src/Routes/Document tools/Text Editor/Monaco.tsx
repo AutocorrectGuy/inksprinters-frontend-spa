@@ -17,7 +17,7 @@ const Monaco = () => {
             language="markdown"
             loading={''}
             width={'100%'}
-            height={getMaxContainerHeight(window.innerHeight)}
+            height={getMaxContainerHeight()}
             onChange={(val) => setEditorText(val as string)}
           />
         </div>

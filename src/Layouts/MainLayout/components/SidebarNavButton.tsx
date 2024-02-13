@@ -63,10 +63,12 @@ const SidebarNavButton: React.FC<SideBarButtonProps> = ({
       className={`${borderRadiusClass} ${selectedBtnStyles} ${btnClass} relative flex items-center justify-between border-[#242C29] py-2 hover:from-[#c8c3bb] hover:via-[#c8c3bb] hover:to-[#c8c3bb] hover:text-[#1b1b1a]`}
       style={{ width: styles.sidebarWidth }}
     >
-      <Link to={href} className="flex w-full items-center px-4" style={{ height: styles.buttonHeight }}>
+      <Link to={href} className="flex w-full items-center pr-4" style={{ height: styles.buttonHeight }}>
         <div className="flex flex-grow items-center">
-          <FontAwesomeIcon icon={icon} className="mr-4 h-7 w-7" />
-          <span>{label}</span>
+          <div className='px-6'>
+            <FontAwesomeIcon icon={icon} className="h-7 w-7" />
+          </div>
+          <span className='font-thin'>{label}</span>
         </div>
         {hasChildren && <FontAwesomeIcon icon={faCaretRight} className="ml-2 h-7 w-7" />}
       </Link>
