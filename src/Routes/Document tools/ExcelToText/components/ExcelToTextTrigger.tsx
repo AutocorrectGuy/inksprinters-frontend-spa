@@ -21,8 +21,6 @@ const ExcelToTextButton = () => {
     resetContext,
   } = useExcelToTextContext()
 
-  const containerRef = useRef<HTMLDivElement>(null)
-
   // Dropzone props
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: (files: File[]) =>

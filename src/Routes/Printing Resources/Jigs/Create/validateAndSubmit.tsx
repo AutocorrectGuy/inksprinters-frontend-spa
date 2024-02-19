@@ -1,6 +1,6 @@
 import { toast } from "react-toastify"
 import { db } from "../../../../libraries/dexie/db"
-import { Jig, jigModel } from "../../../../libraries/dexie/models/jig.model"
+import { JigTemplate, jigModel } from "../../../../libraries/dexie/models/jig.model"
 import { validateData } from "../../../../libraries/dexie/utils/validation"
 import PATH_CONSTANTS from "../../../pathConstants"
 import { customToastProps } from "../../../../libraries/toast/CustomToastContainer"
@@ -11,18 +11,18 @@ import { carveOutNumberValue, clampNumber } from "./utils/numberSanitaze"
 type InputEventType = { e: ChangeEvent<HTMLInputElement> }
 type FromEventType = { e: FormEvent<HTMLFormElement> }
 type HandleInputType = {
-  setFormData: Dispatch<SetStateAction<Jig>>
+  setFormData: Dispatch<SetStateAction<JigTemplate>>
   displayValueRef: MutableRefObject<{ [key: string]: string }>
   clamp?: { min: number, max: number }
 }
 type HandleSubmitType = {
-  formData: Jig
+  formData: JigTemplate
   navigate: NavigateFunction
 } & FromEventType
 
 
 export const handleOnChangeNumber = ({ e, setFormData, displayValueRef, clamp }: HandleInputType & InputEventType) => {
-  const name = e.target.name as keyof Jig
+  const name = e.target.name as keyof JigTemplate
   const carvedNumber = carveOutNumberValue(e.target.value)
   const clampedNumber = clampNumber(carvedNumber, clamp)
 
@@ -31,7 +31,7 @@ export const handleOnChangeNumber = ({ e, setFormData, displayValueRef, clamp }:
 }
 
 export const handleOnBlurNumber = ({ e, setFormData, displayValueRef, addMm }: HandleInputType & InputEventType & { addMm?: boolean }) => {
-  const name = e.target.name as keyof Jig
+  const name = e.target.name as keyof JigTemplate
 
   // force reremder on losing focus of the inputfield
   setFormData((formData) => {

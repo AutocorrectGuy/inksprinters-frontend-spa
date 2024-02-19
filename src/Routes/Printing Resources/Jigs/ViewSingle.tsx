@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import { Jig, jigModel } from '../../../libraries/dexie/models/jig.model'
 import { db } from '../../../libraries/dexie/db'
 import PATH_CONSTANTS from '../../pathConstants'
 import moment from 'moment'
@@ -8,9 +7,11 @@ import MainContentContainer from '../../../Layouts/MainLayout/components/MainLay
 import BtnBack from '../../../Layouts/MainLayout/components/BtnBack'
 import LoadingSpinner from '../../../Layouts/MainLayout/components/DexieJsCrud/LoadingSpinner'
 import { toProperCase } from '../utils'
+import { JigTemplate } from '../../../libraries/dexie/models/jig.model'
+import DisplayJig from './components/DisplayJig'
 
 const ViewSingle = () => {
-  const [jig, setJig] = useState<Jig | null>(null)
+  const [jigTemplate, setJigTemplate] = useState<JigTemplate | null>(null)
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const jigId = searchParams.get('id')
@@ -26,35 +27,18 @@ const ViewSingle = () => {
       const fetchedJig = await db.jigs.get(parseInt(jigId))
       console.log(fetchedJig)
       fetchedJig
-        ? setJig(fetchedJig)
+        ? setJigTemplate(fetchedJig)
         : navigate(PATH_CONSTANTS.PRINTING_RESOURCES.JIGS.VIEW_MANY)
     }
     fetchJig()
   }, [jigId, navigate])
 
-  const Content = ({ jig }: { jig: Jig }) =>
-    <div className='grow flex flex-col items-center justify-center'>
-      <table className='table w-fit text-xl'>
-        <tbody>
-          TODO: View Single Component
-          <tr>
-            <td className='text-neutral-300'>Created At:</td>
-            <td className='text-white'>{moment(jig.created_at).fromNow()}</td>
-          </tr>
-        </tbody>
-      </table>
-      <div className='py-4 flex gap-2'>
-        <BtnBack to={PATH_CONSTANTS.PRINTING_RESOURCES.JIGS.VIEW_MANY} />
-        <button className='btn btn-primary text-lg'>Edit</button>
-      </div>
-    </div >
-
   return (
 
-    <MainContentContainer h1={jig ? jig.name : ''}>
-      {!jig
+    <MainContentContainer h1={jigTemplate ? jigTemplate.name : ''} fullWidth>
+      {!jigTemplate
         ? <LoadingSpinner />
-        : <Content jig={jig} />
+        : <DisplayJig jigTemplate={jigTemplate} />
       }
     </MainContentContainer>
   )

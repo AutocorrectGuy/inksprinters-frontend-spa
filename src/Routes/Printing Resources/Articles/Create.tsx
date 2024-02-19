@@ -8,7 +8,7 @@ import { customToastProps } from '../../../libraries/toast/CustomToastContainer'
 import BtnBack from '../../../Layouts/MainLayout/components/BtnBack';
 import { validateData } from '../../../libraries/dexie/utils/validation';
 import { Article, articleModel } from '../../../libraries/dexie/models/article.model';
-import { Jig } from '../../../libraries/dexie/models/jig.model';
+import { JigTemplate } from '../../../libraries/dexie/models/jig.model';
 import { Primer } from '../../../libraries/dexie/models/primer.model';
 import TailwindcssDropdown from '../../../Components/Dropdowns/TailwindcssDropdown';
 import AsyncCreatableSelect from 'react-select/async-creatable';
@@ -21,7 +21,7 @@ type LoadedData = {
   primers: EntryType[]
 }
 
-const returnIdsAndNames = (items: Jig[] | Primer[]) => items.map(({ id, name }) => ({ value: id, label: name }))
+const returnIdsAndNames = (items: JigTemplate[] | Primer[]) => items.map(({ id, name }) => ({ value: id, label: name }))
 
 const loadOptions = (inputValue: any, callback: any) => {
   db.jigs.toArray()

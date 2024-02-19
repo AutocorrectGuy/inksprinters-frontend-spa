@@ -24,6 +24,7 @@ const PATH_CONSTANTS = {
     },
     JIGS: {
       CREATE: '/printing-resources/jigs/add',
+      CREATE_USING_XML: '/printing-resources/jigs/add-by-using-xml',
       VIEW_SINGLE: '/printing-resources/jigs/view',
       VIEW_MANY: '/printing-resources/jigs',
       UPDATE: '/printing-resources/jigs/update',

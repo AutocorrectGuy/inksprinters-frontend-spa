@@ -19,12 +19,14 @@ import PrimerViewMany from './Routes/Printing Resources/Primers/ViewMany'
 import PrimerGenerate from './Routes/Printing Resources/Primers/Generate'
 import PrimerViewSingle from './Routes/Printing Resources/Primers/ViewSingle'
 import PrimerCreate from './Routes/Printing Resources/Primers/Create'
-import JigViewMany from './Routes/Printing Resources/Jigs/ViewMany'
+import JigViewMany from './Routes/Printing Resources/Jigs/ViewMany/ViewMany'
 import JigViewSingle from './Routes/Printing Resources/Jigs/ViewSingle'
 import JigCreate from './Routes/Printing Resources/Jigs/Create/Create'
 import ArticleViewMany from './Routes/Printing Resources/Articles/ViewMany'
 import ArticleViewSingle from './Routes/Printing Resources/Articles/ViewSingle'
 import ArticleCreate from './Routes/Printing Resources/Articles/Create'
+import JigCreateUsingXml from './Routes/Printing Resources/Jigs/CreateUsingXml/CreateUsingXml'
+import UzturaAtskaites from './Routes/NonPrintingRelated/UzturaAtskaites/UzturaAtskaites'
 
 const router = createBrowserRouter([
   {
@@ -117,6 +119,10 @@ const router = createBrowserRouter([
         path: PATH_CONSTANTS.PRINTING_RESOURCES.JIGS.CREATE,
         element: <JigCreate />
       },
+      {
+        path: PATH_CONSTANTS.PRINTING_RESOURCES.JIGS.CREATE_USING_XML,
+        element: <JigCreateUsingXml />
+      },
 
       // Articles
       {
@@ -152,6 +158,10 @@ const router = createBrowserRouter([
         element: <TodosList />,
       },
     ],
+  },
+  {
+    path: '/uzturs',
+    element: <UzturaAtskaites />
   }
 ])
 

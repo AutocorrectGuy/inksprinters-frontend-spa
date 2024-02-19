@@ -1,0 +1,24 @@
+<TemplateLayout
+  Name="3500 EuroNorm Special parkeerschijf"
+  PageSize="31.4960632 25.1968498"
+  Margin="0 0 0 0"
+  Origin="LowerRight"
+  OriginOffset="0.2598425 0.2440945"
+  IsTemplate="False"
+  Type="CopyTemplateLayout"
+  Copies="15"
+  LayoutSpace="1.102362 1.929134"
+  AllAlignment="MiddleCenter"
+  TemplateElementAdjustment="0 -1 0.2598425 0.2440945 0 0|1 -1 6.610237 0.2440945 0 0|2 -1 12.96063 0.2440945 0 0|3 -1 19.31102 0.2440945 0 0|4 -1 25.66142 0.2440945 0 0|5 -1 0.2598425 7.488189 0 0|6 -1 6.610237 7.488189 0 0|7 -1 12.96063 7.488189 0 0|8 -1 19.31102 7.488189 0 0|9 -1 25.66142 7.488189 0 0|10 -1 0.2598425 14.73228 0 0|11 -1 6.610237 14.73228 0 0|12 -1 12.96063 14.73228 0 0|13 -1 19.31102 14.73228 0 0|14 -1 25.66142 14.73228 0 0"
+  TemplateGroup="False">
+  <TemplateElement
+    ElementSize="5.248032 5.31496"
+    ImageOffset="0 0"
+    ImageAlignment="MiddleCenter"
+    EnableCenterOffset="False"
+    EnableAlignment="False"
+    EnableCenterOrigin="False"
+    EnableCenterSpacing="False"
+    BackgroundImage=""
+  />
+</TemplateLayout>

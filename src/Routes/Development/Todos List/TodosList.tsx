@@ -10,9 +10,11 @@ const getRandomTodo = () => TODOS_ARRAY[randomEntryIndex()]
 const TodosList = () => {
   const [currentTodo, setCurrentTodo] = useState<string>(getRandomTodo())
   useEffect(() => {
-    setInterval(() => {
-      setCurrentTodo(getRandomTodo())
-    }, 10000)
+    const intervalId = setInterval(() => {
+      setCurrentTodo(getRandomTodo());
+    }, 10000);
+
+    return () => clearInterval(intervalId);
   }, [])
 
   return (

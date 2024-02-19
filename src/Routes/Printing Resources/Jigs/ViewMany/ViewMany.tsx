@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Jig, jigModel } from '../../../libraries/dexie/models/jig.model';
-import { db } from '../../../libraries/dexie/db';
-import MainContentContainer from '../../../Layouts/MainLayout/components/MainLayoutContainer';
+import { JigTemplate, jigModel } from '../../../../libraries/dexie/models/jig.model';
+import { db } from '../../../../libraries/dexie/db';
+import MainContentContainer from '../../../../Layouts/MainLayout/components/MainLayoutContainer';
 import moment from 'moment';
-import PATH_CONSTANTS from '../../pathConstants';
-import LoadingSpinner from '../../../Layouts/MainLayout/components/DexieJsCrud/LoadingSpinner';
-import ItemNotFound from '../../../Layouts/MainLayout/components/DexieJsCrud/ItemNotFound';
-import RenderTable from '../../../libraries/dexie/utils/rendering.utils';
+import PATH_CONSTANTS from '../../../pathConstants';
+import LoadingSpinner from '../../../../Layouts/MainLayout/components/DexieJsCrud/LoadingSpinner';
+import ItemNotFound from '../../../../Layouts/MainLayout/components/DexieJsCrud/ItemNotFound';
+import RenderTable from '../../../../libraries/dexie/utils/rendering.utils';
+import AddJigDropdown from './AddJigDropdown';
 const PAGE_SIZE = 10; // Number of items per page
 
 const LatestJigs = () => {
-  const [jigs, setJigs] = useState<Jig[]>([]);
+  const [jigs, setJigs] = useState<JigTemplate[]>([]);
   const [totalJigs, setTotalJigs] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(true);
@@ -47,9 +48,7 @@ const LatestJigs = () => {
 
   const ToolbarTab = () =>
     <div className="flex justify-end p-4">
-      <button className="btn btn-primary" onClick={() => navigate(PATH_CONSTANTS.PRINTING_RESOURCES.JIGS.CREATE)}>
-        Add Jig
-      </button>
+      <AddJigDropdown />
     </div>
 
   const Pagination = () =>
@@ -75,7 +74,7 @@ const LatestJigs = () => {
         : (!jigs.length
           ? <ItemNotFound itemName='jigs' />
           : <div className='flex flex-col'>
-            <RenderTable entries={jigs} entriesModel={jigModel} tableName='JIGS'/>
+            <RenderTable entries={jigs} entriesModel={jigModel} tableName='JIGS' />
             <Pagination />
           </div>
         )

@@ -1,13 +1,13 @@
-import { Jig } from "../../../../../libraries/dexie/models/jig.model"
+import { JigTemplate } from "../../../../../libraries/dexie/models/jig.model"
 
 type ClampType = { min: number, max: number }
 
 const DEFAULT_CLAMP = { min: 0, max: 999 }
 
-export const INPUT_FIELD_CLAMPS: Partial<{ [key in keyof Jig]: ClampType }> = {
-  width: { min: 100, max: 800 },
-  height: { min: 100, max: 640 },
-  count: {min: 0, max: 999}
+export const INPUT_FIELD_CLAMPS: Partial<{ [key in keyof JigTemplate]: ClampType }> = {
+  pageSizeX: { min: 100, max: 800 },
+  pageSizeY: { min: 100, max: 640 },
+  copies: {min: 0, max: 999}
 }
 
 export const clampNumber = (value: number, clamp = DEFAULT_CLAMP) =>

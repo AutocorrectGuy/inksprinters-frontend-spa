@@ -1,13 +1,13 @@
 import Dexie from 'dexie'
 import { generateDexieSchemaString } from './utils/schema'
 import { Primer, primerModel } from './models/primer.model' // Adjust the path as needed
-import { Jig, jigModel } from './models/jig.model'
+import { JigTemplate, jigModel } from './models/jig.model'
 import { Article, articleModel } from './models/article.model'
 
 export class MyDatabase extends Dexie {
   // Declare tables with specific types
   primers: Dexie.Table<Primer, number>
-  jigs: Dexie.Table<Jig, number>
+  jigs: Dexie.Table<JigTemplate, number>
   articles: Dexie.Table<Article, number>
 
   constructor() {
