@@ -2,7 +2,7 @@ import moment from "moment";
 import { DexieJsTable } from "./schema";
 import PATH_CONSTANTS from "../../../Routes/pathConstants";
 import { useNavigate } from "react-router-dom";
-import { toProperCase } from "../../../Routes/Printing Resources/utils";
+import { toProperCase } from "../../../Routes/Storage/utils";
 import ArrayBufferAsImage from "../../../Components/ImageRendering/ArrayBufferAsImage";
 
 type RenderTableProps<T> = {
@@ -21,7 +21,7 @@ const RenderTable = <T extends SpecialProps>({ tableName, entries, entriesModel 
   const navigate = useNavigate()
 
   const onRowClick = (id: number) =>
-    navigate(PATH_CONSTANTS.PRINTING_RESOURCES[tableName].VIEW_SINGLE + `?id=${id}`);
+    navigate(PATH_CONSTANTS.STORAGE[tableName].VIEW_SINGLE + `?id=${id}`);
 
   return (<>
     <table className="table w-full">

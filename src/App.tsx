@@ -14,19 +14,27 @@ import Development from './Routes/Development/Development'
 import CodeRunner from './Routes/Development/Code Runner/CodeRunner'
 import TodosList from './Routes/Development/Todos List/TodosList'
 import CodingExercises from './Routes/Development/Coding Exercises/CodingExercises'
-import PrintingResources from './Routes/Printing Resources/PrintingResources'
-import PrimerViewMany from './Routes/Printing Resources/Primers/ViewMany'
-import PrimerGenerate from './Routes/Printing Resources/Primers/Generate'
-import PrimerViewSingle from './Routes/Printing Resources/Primers/ViewSingle'
-import PrimerCreate from './Routes/Printing Resources/Primers/Create'
-import JigViewMany from './Routes/Printing Resources/Jigs/ViewMany/ViewMany'
-import JigViewSingle from './Routes/Printing Resources/Jigs/ViewSingle'
-import JigCreate from './Routes/Printing Resources/Jigs/Create/Create'
-import ArticleViewMany from './Routes/Printing Resources/Articles/ViewMany'
-import ArticleViewSingle from './Routes/Printing Resources/Articles/ViewSingle'
-import ArticleCreate from './Routes/Printing Resources/Articles/Create'
-import JigCreateUsingXml from './Routes/Printing Resources/Jigs/CreateUsingXml/CreateUsingXml'
+import Storage from './Routes/Storage/Storage'
+import PrimerViewMany from './Routes/Storage/Primers/ViewMany'
+import PrimerGenerate from './Routes/Storage/Primers/Generate'
+import PrimerViewSingle from './Routes/Storage/Primers/ViewSingle'
+import PrimerCreate from './Routes/Storage/Primers/Create'
+import JigViewMany from './Routes/Storage/Jigs/ViewMany/ViewMany'
+import JigViewSingle from './Routes/Storage/Jigs/ViewSingle'
+import JigCreate from './Routes/Storage/Jigs/Create/Create'
+import ArticleViewSingle from './Routes/Storage/Articles/ViewSingle/ViewSingle'
+import JigCreateUsingXml from './Routes/Storage/Jigs/CreateUsingXml/CreateUsingXml'
 import UzturaAtskaites from './Routes/NonPrintingRelated/UzturaAtskaites/UzturaAtskaites'
+import ChemicalsUsageMain from './Routes/ChemicalsUsage/Main/Main'
+import ArticleAddUsingExcel from './Routes/Storage/Articles/Add/FromFile/UsingExcel/AddUsingExcel'
+import ArticlesMenu from './Routes/Storage/Articles/Menu/Menu'
+import ArticlesSearch from './Routes/Storage/Articles/Search/Search'
+import ArticlesSettings from './Routes/Storage/Articles/Settings/Settings'
+import ArticlesAddManually from './Routes/Storage/Articles/Add/Manually/AddManually'
+import ArticlesAddMenu from './Routes/Storage/Articles/Add/Menu/Menu'
+import ArticlesAddFromFileMenu from './Routes/Storage/Articles/Add/FromFile/Menu'
+import ArticlesAddImages from './Routes/Storage/Articles/Add/FromFile/AddImages/AddImages'
+import ArticlesExportMenu from './Routes/Storage/Articles/Export/ExportMenu'
 
 const router = createBrowserRouter([
   {
@@ -42,6 +50,12 @@ const router = createBrowserRouter([
       {
         path: PATH_CONSTANTS.ABOUT,
         element: <About />,
+      },
+
+      // Chemicals
+      {
+        path: PATH_CONSTANTS.CHEMICALS_USAGE.MAIN,
+        element: <ChemicalsUsageMain />
       },
 
       /**
@@ -84,59 +98,96 @@ const router = createBrowserRouter([
        * Printing resources archive
        */
       {
-        path: PATH_CONSTANTS.PRINTING_RESOURCES.ROOT,
-        element: <PrintingResources />,
+        path: PATH_CONSTANTS.STORAGE.ROOT,
+        element: <Storage />,
       },
 
       // Primers
       {
-        path: PATH_CONSTANTS.PRINTING_RESOURCES.PRIMERS.VIEW_SINGLE,
+        path: PATH_CONSTANTS.STORAGE.PRIMERS.VIEW_SINGLE,
         element: <PrimerViewSingle />
       },
       {
-        path: PATH_CONSTANTS.PRINTING_RESOURCES.PRIMERS.VIEW_MANY,
+        path: PATH_CONSTANTS.STORAGE.PRIMERS.VIEW_MANY,
         element: <PrimerViewMany />
       },
       {
-        path: PATH_CONSTANTS.PRINTING_RESOURCES.PRIMERS.CREATE,
+        path: PATH_CONSTANTS.STORAGE.PRIMERS.CREATE,
         element: <PrimerCreate />
       },
       {
-        path: PATH_CONSTANTS.PRINTING_RESOURCES.PRIMERS.GENERATE,
+        path: PATH_CONSTANTS.STORAGE.PRIMERS.GENERATE,
         element: <PrimerGenerate />
       },
 
       // Jigs
       {
-        path: PATH_CONSTANTS.PRINTING_RESOURCES.JIGS.VIEW_SINGLE,
+        path: PATH_CONSTANTS.STORAGE.JIGS.VIEW_SINGLE,
         element: <JigViewSingle />
       },
       {
-        path: PATH_CONSTANTS.PRINTING_RESOURCES.JIGS.VIEW_MANY,
+        path: PATH_CONSTANTS.STORAGE.JIGS.VIEW_MANY,
         element: <JigViewMany />
       },
       {
-        path: PATH_CONSTANTS.PRINTING_RESOURCES.JIGS.CREATE,
+        path: PATH_CONSTANTS.STORAGE.JIGS.CREATE,
         element: <JigCreate />
       },
       {
-        path: PATH_CONSTANTS.PRINTING_RESOURCES.JIGS.CREATE_USING_XML,
+        path: PATH_CONSTANTS.STORAGE.JIGS.CREATE_USING_XML,
         element: <JigCreateUsingXml />
       },
 
-      // Articles
+      /**
+       * ARTICLES
+       */
       {
-        path: PATH_CONSTANTS.PRINTING_RESOURCES.ARTICLES.VIEW_SINGLE,
+        path: PATH_CONSTANTS.STORAGE.ARTICLES.MENU,
+        element: <ArticlesMenu />
+      },
+      // Search articles
+      {
+        path: PATH_CONSTANTS.STORAGE.ARTICLES.SEARCH,
+        element: <ArticlesSearch />
+      },
+      // Add articles
+      {
+        path: PATH_CONSTANTS.STORAGE.ARTICLES.ADD.MENU,
+        element: <ArticlesAddMenu />
+      },
+      {
+        path: PATH_CONSTANTS.STORAGE.ARTICLES.ADD.MANUALLY,
+        element: <ArticlesAddManually />
+      },
+      {
+        path: PATH_CONSTANTS.STORAGE.ARTICLES.ADD.FROM_FILE.MENU,
+        element: <ArticlesAddFromFileMenu />
+      },
+      {
+        path: PATH_CONSTANTS.STORAGE.ARTICLES.ADD.FROM_FILE.ADD_IMAGES,
+        element: <ArticlesAddImages />
+      },
+      {
+        path: PATH_CONSTANTS.STORAGE.ARTICLES.ADD.FROM_FILE.USING_EXCEL,
+        element: <ArticleAddUsingExcel />
+      },
+      // Export Articles
+      {
+        path: PATH_CONSTANTS.STORAGE.ARTICLES.EXPORT.MENU,
+        element: <ArticlesExportMenu />
+      },
+      // Articles settings
+      {
+        path: PATH_CONSTANTS.STORAGE.ARTICLES.SETTINGS,
+        element: <ArticlesSettings />
+      },
+      // View single article
+      {
+        path: PATH_CONSTANTS.STORAGE.ARTICLES.VIEW_SINGLE,
         element: <ArticleViewSingle />
       },
-      {
-        path: PATH_CONSTANTS.PRINTING_RESOURCES.ARTICLES.VIEW_MANY,
-        element: <ArticleViewMany />
-      },
-      {
-        path: PATH_CONSTANTS.PRINTING_RESOURCES.ARTICLES.CREATE,
-        element: <ArticleCreate />
-      },
+
+
 
       /**
       * Development

@@ -23,7 +23,7 @@ const BackSideWithLogo = ({ backSideText }: Props) => {
   // Use the custom hook to preload images
   return (<div className='flex flex-col grow' >{
     logoLoaded && <div className='flex flex-col grow items-center justify-center'>
-      <div className='grow flex flex-col items-center justify-center rounded-xl max-w-[360px] w-full p-6 bg-gradient-to-br from-[#2e2e2e] to-[#1b1b1b] border border-[#2e2e2e]'>
+      <div className='grow flex flex-col items-center justify-center rounded-xl w-[300px] p-6 bg-gradient-to-br from-[#2e2e2e] to-[#1b1b1b] border border-[#2e2e2e]'>
         <img src={LOGO_WITH_TEXT} className='w-2/3' />
         {backSideText && <div className='text-4xl text-[#CFCBC4] font-bold pt-2 uppercase'>
           {backSideText}

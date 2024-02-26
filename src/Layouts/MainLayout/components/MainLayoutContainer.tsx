@@ -1,8 +1,10 @@
 import { ReactNode } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { getMaxContainerHeight, styles } from '../config/MainLayout.config'
 import Breadcrumbs from './BreadCrumbs'
 import SCRUMBLED_PAPER_JPG from '../../../Resources/images/Pages/Welcome/scrumbled-paper.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
 export type additionalStepsType = {
   index: number
@@ -18,6 +20,7 @@ type Props = {
   resetComponentState?: () => void
   fullWidth?: boolean
   displayQueryParam?: string
+  linkBackTo?: string
 }
 const MAX_CONTENT_HEIGHT = getMaxContainerHeight()
 
@@ -30,6 +33,7 @@ const MainContentContainer = ({
   resetComponentState,
   fullWidth,
   displayQueryParam,
+  linkBackTo
 }: Props) => {
   const { pathname } = useLocation()
   const hasBreadCrumb = pathname.split('/').length > 2
@@ -57,7 +61,7 @@ const MainContentContainer = ({
 
         {/* Heading */}
         <div
-          className="relative flex w-full items-center rounded-lg border-2 border-[#9da3a3] px-5 text-3xl font-bold text-[#e7e4db]"
+          className="relative flex w-full items-center justify-between rounded-lg border-2 border-[#9da3a3] px-5 text-[#e7e4db]"
           style={{
             height: styles.contentContainer.h1Height,
             marginBottom: styles.contentContainer.margin,
@@ -72,7 +76,11 @@ const MainContentContainer = ({
               backgroundSize: '100%',
             }}
           />
-          <h1 className="font-medium">{h1}</h1>
+          <h1 className="text-3xl font-medium">{h1}</h1>
+          {linkBackTo && <Link to={linkBackTo} className='flex items-center justify-center group'>
+            <FontAwesomeIcon icon={faChevronLeft} className='text-neutral-400 text-lg pt-1 group-hover:text-white' />
+            <div className='pl-1 text-2xl font-semibold text-neutral-400 group-hover:text-white'>Back</div>
+          </Link>}
         </div>
 
         {/* Content */}
@@ -94,7 +102,7 @@ const MainContentContainer = ({
               {children}
             </div>
           </div>
-          
+
           <div className='absolute top-0 bottom-0 left-0 bg-gradient-to-b from-[#9da3a3] to-transparent w-[3px] rounded-tl-full'></div>
           <div className='absolute top-0 right-0 bottom-0 bg-gradient-to-b from-[#9da3a3] to-transparent w-[3px] rounded-tr-full'></div>
           <div className='absolute left-[1px] -top-[1px] right-[1px] bg-[#9da3a3] to-transparent h-[3px] rounded-t-full'></div>

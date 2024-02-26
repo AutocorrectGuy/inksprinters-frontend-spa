@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { SideBarButtonProps } from '../types'
 import { sideBarButtons } from '../config/SidebarNav.config'
 
-export type CardSetName = 'Document tools' | 'Printing tools' | 'Printing Resources' | 'Development' | 'Rēķini'
+export type CardSetName = 'Document tools' | 'Printing tools' | 'Storage' | 'Development' | 'Rēķini'
 
 type Props = {
   cardsetName: CardSetName;

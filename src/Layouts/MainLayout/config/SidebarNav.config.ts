@@ -4,6 +4,7 @@ import {
   faCode,
   faDatabase,
   faFileText,
+  faFlask,
   faGamepad,
   faLocationPin,
   faRunning,
@@ -27,6 +28,11 @@ export const sideBarButtons: SideBarButtonProps[] = [
     icon: faBookmark,
     label: 'About',
     href: PATH_CONSTANTS.ABOUT,
+  },
+  {
+    icon: faFlask,
+    label: 'Chemicals usage',
+    href: PATH_CONSTANTS.CHEMICALS_USAGE.MAIN,
   },
   /**
    * PRINTING TOOLS
@@ -62,26 +68,26 @@ export const sideBarButtons: SideBarButtonProps[] = [
    */
   {
     icon: faDatabase,
-    label: 'Printing Resources',
-    href: PATH_CONSTANTS.PRINTING_RESOURCES.ROOT,
+    label: 'Storage',
+    href: PATH_CONSTANTS.STORAGE.ROOT,
     children: [
       {
         icon: faArtstation,
         label: 'Articles',
         description: 'Find, add, edit and remove articles',
-        href: PATH_CONSTANTS.PRINTING_RESOURCES.ARTICLES.VIEW_MANY,
+        href: PATH_CONSTANTS.STORAGE.ARTICLES.MENU,
       },
       {
         icon: faTable,
         label: 'Jigs',
         description: 'Find, add, edit and remove jigs',
-        href: PATH_CONSTANTS.PRINTING_RESOURCES.JIGS.VIEW_MANY,
+        href: PATH_CONSTANTS.STORAGE.JIGS.VIEW_MANY,
       },
       {
         icon: faBottleWater,
         label: 'Primers',
         description: 'Find, add, edit and remove primers',
-        href: PATH_CONSTANTS.PRINTING_RESOURCES.PRIMERS.VIEW_MANY
+        href: PATH_CONSTANTS.STORAGE.PRIMERS.VIEW_MANY
       },
     ],
   },

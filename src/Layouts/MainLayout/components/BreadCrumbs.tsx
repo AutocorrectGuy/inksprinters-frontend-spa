@@ -2,7 +2,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { styles } from '../config/MainLayout.config'
 import { additionalStepsType } from './MainLayoutContainer'
 import { useState } from 'react'
-import { toProperCase } from '../../../Routes/Printing Resources/utils'
+import { toProperCase } from '../../../Routes/Storage/utils'
 
 type BreadCrumbProps = {
   pathname: string

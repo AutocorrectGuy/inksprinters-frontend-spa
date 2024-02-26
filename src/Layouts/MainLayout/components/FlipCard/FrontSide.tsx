@@ -14,24 +14,25 @@ const FrontSide = ({ article, imageLoaded, flipCardHeight }: Props) => {
   return (
     <div className='grow flex flex-col items-center justify-center'>
       {article && <div className='flex flex-col grow items-center justify-center'>
-        <div className=" max-w-[360px] w-full rounded-xl p-4 flex flex-col grow"
-          style={{background: 'linear-gradient(105deg, #E96671 0%, #723748 100%)'}}
+        <div className="w-[300px] rounded-xl p-4 flex flex-col grow"
+          style={{ background: 'linear-gradient(105deg, #E96671 0%, #723748 100%)' }}
         >
-          <div className="relative pb-1 pt-4 flex justify-center items-end rounded-t-md bg-white"
+          <div className="relative pb-1 pt-4 px-1 flex justify-center items-center rounded-t-md bg-white"
             style={{ height: flipCardHeight.image }}
           >
             {
               article.image && imageLoaded
-                ? <img src={arrayBufferToImageUrl(article.image)} alt="Article image" className='h-full z-[2]' />
-                : <FontAwesomeIcon icon={faImage} className="z-[2] h-full text-white/10" />
+                ? <img src={arrayBufferToImageUrl(article.image)} alt="Article image" className="z-[2] max-w-full max-h-full object-contain" />
+                : <FontAwesomeIcon icon={faImage} className="z-[2] h-[80%] text-black/20" />
             }
             <div className='absolute h-8 bg-[#E96671] text-white -bottom-4 right-4 font-medium px-2 z-[3] rounded-sm'>
               {article.number}
             </div>
           </div>
-          <div className="px-6 py-4 bg-white/80 rounded-b-md flex flex-col grow"
+          <div className="px-1 py-4 bg-white/80 rounded-b-md flex flex-col grow"
           >
-            <div className="relative font-bold text-3xl text-center text-neutral-800 px-4 h-[74px] overflow-hidden">
+            <div className={`relative font-bold text-center text-neutral-800 px-4 h-[74px] text-2xl overflow-hidden ${article.name.length > 19 ? 'leading-7' : 'leading-8'}`}
+            >
               {article.name}
             </div>
             <div className='flex flex-col grow text-gray-700 leading-6'>

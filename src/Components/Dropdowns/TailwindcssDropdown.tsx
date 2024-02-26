@@ -57,8 +57,9 @@ const TailwindcssDropdown = ({
       {/* Button */}
       <div className="relative inline-block text-left cursor-pointer">
         <button
+          type='button'
           className={twMerge(
-            'btn flex items-center justify-center whitespace-nowrap px-3 text-xs hover:bg-base-100 group-hover:bg-base-100 gap-3',
+            'flex items-center h-12 rounded-lg justify-center whitespace-nowrap px-3 text-xs hover:bg-base-100 gap-3',
             btnClassName,
           )}
         >

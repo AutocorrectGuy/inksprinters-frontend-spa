@@ -3,3 +3,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Globally remove spin buttons from all number inputs */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type='number'] {
+  -webkit-appearance: textfield; /* Chrome, Safari, newer versions of Opera */
+  -moz-appearance: textfield; /* Firefox */
+  appearance: textfield; /* Standard syntax; future-proofing for other browsers, and should also work in Edge */
+}

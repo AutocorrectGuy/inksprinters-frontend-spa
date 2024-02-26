@@ -1,6 +1,9 @@
 const PATH_CONSTANTS = {
   HOME: '/',
   ABOUT: '/about',
+  CHEMICALS_USAGE: {
+    MAIN: '/a',
+  },
   DOCUMENT_TOOLS: {
     ROOT: '/document-tools',
     EXCEL_CONVERTER: '/document-tools/excel-converter',
@@ -12,30 +15,43 @@ const PATH_CONSTANTS = {
     RECALIBRATE_ARTICLE_POSITION: '/printing-tools/recalibrate-article-position',
     CMYK_Color_PICKER: '/printing-tools/cmyk-color-picker',
   },
-  PRINTING_RESOURCES: {
-    ROOT: '/printing-resources',
+  STORAGE: {
+    ROOT: '/storage',
     PRIMERS: {
-      CREATE: '/printing-resources/primers/add',
-      VIEW_SINGLE: '/printing-resources/primers/view',
-      VIEW_MANY: '/printing-resources/primers',
-      UPDATE: '/printing-resources/primers/update',
-      DELETE: '/printing-resources/primers/delete',
-      GENERATE: '/printing-resources/primers/generate',
+      CREATE: '/storage/primers/add',
+      VIEW_SINGLE: '/storage/primers/view',
+      VIEW_MANY: '/storage/primers',
+      UPDATE: '/storage/primers/update',
+      DELETE: '/storage/primers/delete',
+      GENERATE: '/storage/primers/generate',
     },
     JIGS: {
-      CREATE: '/printing-resources/jigs/add',
-      CREATE_USING_XML: '/printing-resources/jigs/add-by-using-xml',
-      VIEW_SINGLE: '/printing-resources/jigs/view',
-      VIEW_MANY: '/printing-resources/jigs',
-      UPDATE: '/printing-resources/jigs/update',
-      DELETE: '/printing-resources/jigs/delete',
+      CREATE: '/storage/jigs/add',
+      CREATE_USING_XML: '/storage/jigs/add-by-using-xml',
+      VIEW_SINGLE: '/storage/jigs/view',
+      VIEW_MANY: '/storage/jigs',
+      UPDATE: '/storage/jigs/update',
+      DELETE: '/storage/jigs/delete',
     },
     ARTICLES: {
-      CREATE: '/printing-resources/articles/add',
-      VIEW_SINGLE: '/printing-resources/articles/view',
-      VIEW_MANY: '/printing-resources/articles',
-      UPDATE: '/printing-resources/articles/update',
-      DELETE: '/printing-resources/articles/delete',
+      MENU: '/storage/articles',
+      SEARCH: '/storage/articles/search',
+      ADD: {
+        MENU: '/storage/articles/add/menu',
+        MANUALLY: '/storage/articles/add/add-manually',
+        FROM_FILE: {
+          MENU: '/storage/articles/add/from-file/menu',
+          USING_EXCEL: '/storage/articles/add/from-file/add-using-excel',
+          ADD_IMAGES: '/storage/articles/add/from-file/add-images'
+        }
+      },
+      EXPORT: {
+        MENU: '/storage/articles/menu'
+      },
+      SETTINGS: '/storage/articles/settings',
+      VIEW_SINGLE: '/storage/articles/view',
+      UPDATE: '/storage/articles/update',
+      DELETE: '/storage/articles/delete',
     },
   },
   DEVELOPMENT: {

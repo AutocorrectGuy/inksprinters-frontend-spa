@@ -28,7 +28,6 @@ const FlipCard = ({ article, flipCardHeight }: Props) => {
     img.onload = () => {
       setImageLoaded(true)
     };
-
   }, [article]);
 
   useEffect(() => {
@@ -37,10 +36,11 @@ const FlipCard = ({ article, flipCardHeight }: Props) => {
 
     // flip the card
     setTimeout(() => { setIsFlipped(true) }, 50)
+    console.log('asdasasd')
   }, [imageLoaded])
 
   return (
-    <div className='flex flex-col grow max-w-[320px] w-full h-full'
+    <div className='flex flex-col h-full min-w-[300px]'
       style={{ height: flipCardHeight.total }}
     >
       <div className={`relative w-full transition-transform duration-500 ease-out flex flex-col grow`}
