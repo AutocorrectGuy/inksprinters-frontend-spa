@@ -23,7 +23,6 @@ const PATH_CONSTANTS = {
       VIEW_MANY: '/storage/primers',
       UPDATE: '/storage/primers/update',
       DELETE: '/storage/primers/delete',
-      GENERATE: '/storage/primers/generate',
     },
     JIGS: {
       CREATE: '/storage/jigs/add',
@@ -36,11 +35,13 @@ const PATH_CONSTANTS = {
     ARTICLES: {
       MENU: '/storage/articles',
       SEARCH: '/storage/articles/search',
+      VIEW_SINGLE: '/storage/articles/search/view-single',
+
       ADD: {
-        MENU: '/storage/articles/add/menu',
+        MENU: '/storage/articles/add',
         MANUALLY: '/storage/articles/add/add-manually',
         FROM_FILE: {
-          MENU: '/storage/articles/add/from-file/menu',
+          MENU: '/storage/articles/add/from-file',
           USING_EXCEL: '/storage/articles/add/from-file/add-using-excel',
           ADD_IMAGES: '/storage/articles/add/from-file/add-images'
         }
@@ -49,7 +50,6 @@ const PATH_CONSTANTS = {
         MENU: '/storage/articles/menu'
       },
       SETTINGS: '/storage/articles/settings',
-      VIEW_SINGLE: '/storage/articles/view',
       UPDATE: '/storage/articles/update',
       DELETE: '/storage/articles/delete',
     },

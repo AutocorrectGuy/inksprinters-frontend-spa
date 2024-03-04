@@ -34,7 +34,7 @@ const CARDS_DATA: CardProps[] = [
 
 const Menu = () => {
   return (
-    <MainContentContainer h1='Articles menu' linkBackTo={PATH_CONSTANTS.STORAGE.ROOT}>
+    <MainContentContainer h1='Articles menu'>
       <div className='grid grid-cols-4 w-full grow gap-1 p-2'>
         {CARDS_DATA.map((prop, i) => <MenuCard key={`card-${i}`} text={prop.text} icon={prop.icon} path={prop.path} index={i} />)}
       </div>

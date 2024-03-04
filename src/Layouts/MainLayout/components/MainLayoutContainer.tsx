@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { getMaxContainerHeight, styles } from '../config/MainLayout.config'
 import Breadcrumbs from './BreadCrumbs'
 import SCRUMBLED_PAPER_JPG from '../../../Resources/images/Pages/Welcome/scrumbled-paper.png'
@@ -20,7 +20,9 @@ type Props = {
   resetComponentState?: () => void
   fullWidth?: boolean
   displayQueryParam?: string
-  linkBackTo?: string
+  btnBack?: boolean
+  isSpecialBackNavigation?: boolean
+  navBackState?: any
 }
 const MAX_CONTENT_HEIGHT = getMaxContainerHeight()
 
@@ -33,11 +35,21 @@ const MainContentContainer = ({
   resetComponentState,
   fullWidth,
   displayQueryParam,
-  linkBackTo
+  btnBack = true,
+  isSpecialBackNavigation = false,
+  navBackState
 }: Props) => {
+
   const { pathname } = useLocation()
+  const navigate = useNavigate()
   const hasBreadCrumb = pathname.split('/').length > 2
 
+  const handleClickBack = () => {
+    const href = window.location.pathname.split('/').slice(0, -1).join('/')
+    isSpecialBackNavigation
+      ? navigate(-1)
+      : navigate(href.length ? href : '/', { state: navBackState });
+  }
   return (
     <div
       className="flex grow flex-col"
@@ -77,17 +89,20 @@ const MainContentContainer = ({
             }}
           />
           <h1 className="text-3xl font-medium">{h1}</h1>
-          {linkBackTo && <Link to={linkBackTo} className='flex items-center justify-center group'>
-            <FontAwesomeIcon icon={faChevronLeft} className='text-neutral-400 text-lg pt-1 group-hover:text-white' />
-            <div className='pl-1 text-2xl font-semibold text-neutral-400 group-hover:text-white'>Back</div>
-          </Link>}
+          {
+            btnBack && <div onClick={handleClickBack}
+              className='flex items-center justify-center group cursor-pointer hover:brightness-105'>
+              <FontAwesomeIcon icon={faChevronLeft} className='text-neutral-400 text-lg pt-1 group-hover:text-white' />
+              <div className='pl-1 text-2xl font-semibold text-neutral-400 group-hover:text-white'>Back</div>
+            </div>
+          }
+
         </div>
 
         {/* Content */}
-        {/* border border-[#9da3a3] */}
-        <div className='grow relative'>
+        <div className='grow relative rounded-md'>
           <div
-            className="grow overflow-y-auto rounded-b-md leading-8 text-[#e7e4db]"
+            className="grow overflow-y-auto rounded-md leading-8 text-[#e7e4db]"
             style={{ height: MAX_CONTENT_HEIGHT - (hasBreadCrumb ? styles.breadCrumbHeight : 0) }}
           >
             <div className="relative flex h-auto min-h-full grow flex-col rounded-md">

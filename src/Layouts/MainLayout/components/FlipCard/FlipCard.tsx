@@ -34,9 +34,8 @@ const FlipCard = ({ article, flipCardHeight }: Props) => {
     if (!imageLoaded)
       return
 
-    // flip the card
+    // flip the card after delay
     setTimeout(() => { setIsFlipped(true) }, 50)
-    console.log('asdasasd')
   }, [imageLoaded])
 
   return (

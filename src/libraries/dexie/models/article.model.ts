@@ -20,7 +20,9 @@ export type Article = {
   created_at: number
   // for joining images: if article is loaded from excel file, images have to be loaded separately.
   // We can store the image name from the `image_name` column to this articles column
-  image_name?: string
+  imported_image_name?: string
+  imported_jig_name?: string
+  imported_primer_name?: string
 }
 
 // Define the DexieJsTable for Primer
@@ -28,7 +30,7 @@ export const articleModel: DexieJsTable<Article> = {
   id: { type: 'number', validation: [], autoIncrement: true },
   name: { type: 'string', validation: ['isValidText', 'isRequired'] },
   colors: { type: 'string' },
-  number: { type: 'number' },
+  number: { type: 'string' },
   x: { type: 'number' },
   y: { type: 'number' },
   z: { type: 'number' },
@@ -43,5 +45,7 @@ export const articleModel: DexieJsTable<Article> = {
   priming_duration: { type: 'number', validation: ['isNumeric', 'isRequired'] },
   created_at: { type: 'number', validation: ['isNumeric'] },
   // for joining images
-  image_name: { type: 'string' },
+  imported_image_name: { type: 'string' },
+  imported_jig_name: { type: 'string' },
+  imported_primer_name: { type: 'string' },
 }

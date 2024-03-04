@@ -16,7 +16,6 @@ import TodosList from './Routes/Development/Todos List/TodosList'
 import CodingExercises from './Routes/Development/Coding Exercises/CodingExercises'
 import Storage from './Routes/Storage/Storage'
 import PrimerViewMany from './Routes/Storage/Primers/ViewMany'
-import PrimerGenerate from './Routes/Storage/Primers/Generate'
 import PrimerViewSingle from './Routes/Storage/Primers/ViewSingle'
 import PrimerCreate from './Routes/Storage/Primers/Create'
 import JigViewMany from './Routes/Storage/Jigs/ViewMany/ViewMany'
@@ -114,10 +113,6 @@ const router = createBrowserRouter([
       {
         path: PATH_CONSTANTS.STORAGE.PRIMERS.CREATE,
         element: <PrimerCreate />
-      },
-      {
-        path: PATH_CONSTANTS.STORAGE.PRIMERS.GENERATE,
-        element: <PrimerGenerate />
       },
 
       // Jigs

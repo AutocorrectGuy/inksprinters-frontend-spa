@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useEffect, useMemo, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import MainContentContainer from '../../../../Layouts/MainLayout/components/MainLayoutContainer'
 import Frame from '../../../../Components/Input/Frame'
 import CustomIcon from '../../../../Components/CustomIcon/CustomIcon'
@@ -10,8 +10,8 @@ import { calculateMaxCellCount, generateGrid } from './GenerateGrid'
 import { INPUT_FIELD_CLAMPS, clampNumber } from './utils/numberSanitaze'
 import { JigTemplate } from '../../../../libraries/dexie/models/jig.model'
 
-const DEFAULT_JIG_STATE: JigTemplate = {
-  name: '',
+const generateFieldsState: (jigName?: string) => JigTemplate = (jigName = '') => ({
+  name: jigName ?? '',
 
   // Media Size
   pageSizeX: 800,
@@ -42,25 +42,33 @@ const DEFAULT_JIG_STATE: JigTemplate = {
   CellBackgroundImage: undefined, // Empty
 
   created_at: 0,
-}
+})
 
-const DEFAULT_DISPLAY_JIG_STATE = Object.entries(DEFAULT_JIG_STATE).reduce(
-  (acc, [currName, currVal]) => ({
-    ...acc,
-    [currName]: typeof currVal === 'number' && currName !== 'copies' ? `${currVal} mm` : currVal,
-  }),
-  {},
-)
+const generateDisplayFieldsState: (jigName?: string) => { [key: string]: string } = (jigName?: string) => {
+  const jigInputsState = generateFieldsState(jigName)
+
+  const displayState: { [key: string]: string } = Object.entries(jigInputsState).reduce(
+    (acc, [currName, currVal]) => ({ ...acc, [currName]: `${currVal} mm` }), {}
+  )
+  displayState.copies = `${jigInputsState.copies}`
+  displayState.name = jigName ?? ''
+  return displayState
+}
 
 const determineCellStyles = (isOriginLowerRight: 'TopLeft' | 'LowerRight' | undefined) =>
   isOriginLowerRight === 'LowerRight' ? ['bottom', 'right'] : ['top', 'left']
 
+
 const Create = () => {
-  const [formData, setFormData] = useState<JigTemplate>(DEFAULT_JIG_STATE)
+  // location state
+  const location = useLocation();
+  const { jigName, isSpecialBackNavigation } = location.state || {}; // Ensure to provide a fallback
+
+  const [formData, setFormData] = useState<JigTemplate>(generateFieldsState(jigName))
   const [isJigWrapperLoaded, setIsJigWrapperLoaded] = useState<boolean>(false)
   const [keepMaxCellsCount, setKeepMaxCellsCount] = useState(false)
 
-  const displayValueRef = useRef<{ [key: string]: string }>(DEFAULT_DISPLAY_JIG_STATE)
+  const displayValueRef = useRef<{ [key: string]: string }>(generateDisplayFieldsState(jigName))
   const nameInputRef = useRef<HTMLInputElement>(null)
   const jigWrapperRef = useRef<HTMLDivElement>(null)
   const modalRef = useRef<HTMLDialogElement>(null)
@@ -69,7 +77,10 @@ const Create = () => {
   const cellStyles = determineCellStyles(formData.origin)
 
   useEffect(() => {
-    nameInputRef.current && nameInputRef.current.focus()
+    if(nameInputRef.current) {
+      nameInputRef.current.setSelectionRange(0, 0)
+      nameInputRef.current.focus()
+    }
     jigWrapperRef.current && setIsJigWrapperLoaded(true)
   }, [])
 
@@ -138,7 +149,7 @@ const Create = () => {
   })
 
   return (
-    <MainContentContainer h1="Add jig" fullWidth>
+    <MainContentContainer h1="Add jig" fullWidth isSpecialBackNavigation={isSpecialBackNavigation}>
       <div className="flex grow flex-col">
         <div className="flex grow">
           <form

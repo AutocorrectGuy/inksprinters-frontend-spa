@@ -7,7 +7,6 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import TableHeaderCell from './TableHeaderCell'
 import { StepComponentProps } from '../../MultiStepModal'
 import { pickColumn } from '../../../../utils/ExcelDataProcessing/processData'
-import { getMaxContainerHeight } from '../../../../../../../Layouts/MainLayout/config/MainLayout.config'
 
 const getSelectedColumnIndexes = (selectedColumns: boolean[]) =>
   selectedColumns.map((isSelected, index) => (isSelected ? index : -1)).filter((index) => index !== -1)

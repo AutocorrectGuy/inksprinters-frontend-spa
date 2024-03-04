@@ -23,7 +23,7 @@ const Settings = (props: Props) => {
   }
 
   return (
-    <MainContentContainer h1='Articles settings' linkBackTo={PATH_CONSTANTS.STORAGE.ARTICLES.MENU}>
+    <MainContentContainer h1='Articles settings'>
       <div className='flex flex-col grow w-full items-center justify-center'>
         <button className='bg-red-600 text-white text-2xl px-4 py-2 rounded-lg animation-btn' onClick={handeDeletAll}>DELETE ALL ARTICLES</button>
       </div>

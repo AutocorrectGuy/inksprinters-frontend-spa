@@ -5,7 +5,6 @@ import MainContentContainer from '../../../../../Layouts/MainLayout/components/M
 import PATH_CONSTANTS from '../../../../pathConstants';
 import { toast } from 'react-toastify';
 import { customToastProps } from '../../../../../libraries/toast/CustomToastContainer';
-import BtnBack from '../../../../../Layouts/MainLayout/components/BtnBack';
 import { validateData } from '../../../../../libraries/dexie/utils/validation';
 import { Article, articleModel } from '../../../../../libraries/dexie/models/article.model';
 import { JigTemplate } from '../../../../../libraries/dexie/models/jig.model';
@@ -130,7 +129,7 @@ const AddManually = () => {
   };
 
   return (
-    <MainContentContainer h1='Add article' linkBackTo={PATH_CONSTANTS.STORAGE.ARTICLES.ADD.MENU}>
+    <MainContentContainer h1='Add article'>
       <div className='flex flex-col grow items-center justify-center'>
         <form onSubmit={(e) => e.preventDefault()} className='grid grid-cols-2 gap-x-8 gap-y-2'>
 

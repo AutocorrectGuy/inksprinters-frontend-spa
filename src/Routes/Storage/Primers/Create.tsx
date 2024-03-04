@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { db } from '../../../libraries/dexie/db'; // Import your Dexie instance
 import MainContentContainer from '../../../Layouts/MainLayout/components/MainLayoutContainer';
 import PATH_CONSTANTS from '../../pathConstants';
 import { toast } from 'react-toastify';
 import { customToastProps } from '../../../libraries/toast/CustomToastContainer';
-import BtnBack from '../../../Layouts/MainLayout/components/BtnBack';
 import { validateData } from '../../../libraries/dexie/utils/validation';
 import { Primer, primerModel } from '../../../libraries/dexie/models/primer.model';
+import { updateArticleAndFetchPrimer } from '../Articles/Utils/UpdateAndFetch';
 
 const Create = () => {
-  const [formData, setFormData] = useState<Primer>({ name: '', description: '', created_at: 0 });
+  const location = useLocation()
+  const { primerName, isSpecialBackNavigation } = location.state || {}
+
+  const [formData, setFormData] = useState<Primer>({ name: primerName ?? '', description: '', created_at: 0 });
   const navigate = useNavigate();
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -29,8 +33,14 @@ const Create = () => {
         created_at: new Date().getTime(),
       }
       validateData(primerToAdd, primerModel)
-      
+
       await db.primers.add(primerToAdd);
+      
+      // link articles to the primer
+      await db.articles.toArray()
+        .then(articles => articles.forEach(article => updateArticleAndFetchPrimer(article)))
+        .catch(err => console.error(err))
+
       toast.success(`Primer ${formData.name} added successfully!`, customToastProps)
       navigate(PATH_CONSTANTS.STORAGE.PRIMERS.VIEW_MANY); // Redirect to viewMany component
     } catch (error) {
@@ -40,7 +50,7 @@ const Create = () => {
   };
 
   return (
-    <MainContentContainer h1='Add Primer'>
+    <MainContentContainer h1='Add Primer' isSpecialBackNavigation={isSpecialBackNavigation}>
       <div className='flex flex-col grow items-center justify-center'>
         <form onSubmit={handleSubmit} className='max-w-[300px] w-full'>
           <div className="form-control">
@@ -60,8 +70,7 @@ const Create = () => {
               onChange={(e) => handleInputChange(e)}
               rows={2}
             />          </div>
-          <div className="mt-4 flex gap-2">
-            <BtnBack to={PATH_CONSTANTS.STORAGE.PRIMERS.VIEW_MANY} />
+          <div className="mt-4 flex">
             <button type="submit" className="btn btn-primary grow text-lg">Add</button>
           </div>
         </form>

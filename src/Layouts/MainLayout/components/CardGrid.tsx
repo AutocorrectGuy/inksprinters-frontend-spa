@@ -53,11 +53,11 @@ const CardGrid = ({ cardsetName, columnCount = 2, rowCount = 2 }: Props) => {
       {cards?.map((card, i) => (
         <Link to={card.href} key={`document-card-${i}`} className={twMerge(CARD_CLASS_NAME, card.cardStyles)}>
           <div className='flex flex-col grow items-center justify-center'>
-            <FontAwesomeIcon icon={card.icon} className="grow max-h-[50%]" />
+            <FontAwesomeIcon icon={card.icon} className="grow max-h-[75%]" />
           </div>
           <div className="flex flex-col justify-end text-[#CFCBC4]">
-            <h3 className="pt-4 text-2xl font-bold">{card.label}</h3>
-            <p className="text-md min-h-12 font-thin leading-5">{card?.description}</p>
+            <h3 className="pt-4 text-4xl font-bold text-center pb-4">{card.label}</h3>
+            <p className="text-md min-h-12 font-thin leading-5 text-center">{card?.description}</p>
           </div>
         </Link>
       ))}

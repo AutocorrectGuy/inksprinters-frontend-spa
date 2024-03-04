@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { arrayBufferToImageUrl } from '../../../../Utils/ImageConversion'
 import { Article } from '../../../../libraries/dexie/models/article.model'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faImage } from '@fortawesome/free-solid-svg-icons'
+import { faCopy, faImage } from '@fortawesome/free-solid-svg-icons'
+import { toast } from 'react-toastify'
+import { customToastProps } from '../../../../libraries/toast/CustomToastContainer'
+import { handleCopy } from '../../../../Routes/Document tools/ExcelToText/utils/OptionsHandlers/copyHandler'
 
 type Props = {
   article: Article | null
@@ -10,46 +13,83 @@ type Props = {
   flipCardHeight: { [key: string]: number }
 }
 
+const DESIRED_NAME_REF_HEIGHT = 120
+const COPY_SUCCESS_TEXT = 'Position copied successfully!'
+
 const FrontSide = ({ article, imageLoaded, flipCardHeight }: Props) => {
+  const handleCopyClick = (text: string) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => toast.success('Position copied successfully!', customToastProps))
+      .catch((err) => toast.error(`Failed to copy positions. Error: \n${err}`, customToastProps))
+  }
+
   return (
-    <div className='grow flex flex-col items-center justify-center'>
-      {article && <div className='flex flex-col grow items-center justify-center'>
-        <div className="w-[300px] rounded-xl p-4 flex flex-col grow"
-          style={{ background: 'linear-gradient(105deg, #E96671 0%, #723748 100%)' }}
-        >
-          <div className="relative pb-1 pt-4 px-1 flex justify-center items-center rounded-t-md bg-white"
-            style={{ height: flipCardHeight.image }}
+    <div className="flex grow flex-col items-center justify-center">
+      {article && (
+        <div className="flex grow flex-col items-center justify-center">
+          <div
+            className="flex w-[300px] grow flex-col rounded-xl p-4"
+            style={{ background: 'linear-gradient(105deg, #E96671 0%, #723748 100%)' }}
           >
-            {
-              article.image && imageLoaded
-                ? <img src={arrayBufferToImageUrl(article.image)} alt="Article image" className="z-[2] max-w-full max-h-full object-contain" />
-                : <FontAwesomeIcon icon={faImage} className="z-[2] h-[80%] text-black/20" />
-            }
-            <div className='absolute h-8 bg-[#E96671] text-white -bottom-4 right-4 font-medium px-2 z-[3] rounded-sm'>
-              {article.number}
-            </div>
-          </div>
-          <div className="px-1 py-4 bg-white/80 rounded-b-md flex flex-col grow"
-          >
-            <div className={`relative font-bold text-center text-neutral-800 px-4 h-[74px] text-2xl overflow-hidden ${article.name.length > 19 ? 'leading-7' : 'leading-8'}`}
+            <div
+              className="relative flex items-center justify-center rounded-t-md bg-white px-1 pb-1 pt-4"
+              style={{ height: flipCardHeight.image }}
             >
-              {article.name}
+              {article.image && imageLoaded ? (
+                <img
+                  src={arrayBufferToImageUrl(article.image)}
+                  alt="Article image"
+                  className="z-[2] max-h-full max-w-full object-contain"
+                />
+              ) : (
+                <FontAwesomeIcon icon={faImage} className="z-[2] h-[80%] text-black/20" />
+              )}
+              <div className="absolute -bottom-4 right-4 z-[3] h-8 rounded-sm bg-[#E96671] px-2 font-medium text-white">
+                {article.number}
+              </div>
             </div>
-            <div className='flex flex-col grow text-gray-700 leading-6'>
-              <div className='flex flex-col grow justify-center'>
-                <div className="grid grid-cols-2 gap-x-4 gap-y-1 mx-auto py-4 w-full">
-                  <div className="text-right">Horizontal</div>
-                  <div className='font-bold'>{article.x} mm</div>
-                  <div className="text-right">Vertical</div>
-                  <div className='font-bold'>{article.y} mm</div>
-                  <div className="text-right">Media Height</div>
-                  <div className='font-bold'>{article.z} mm</div>
+            <div className="flex grow flex-col rounded-b-md bg-white/80 px-1 py-3">
+              <div
+                className={`flex items-center justify-center px-4 py-1 text-center text-2xl font-bold leading-7 text-neutral-800`}
+                style={{ height: DESIRED_NAME_REF_HEIGHT }}
+              >
+                {article.name}
+              </div>
+              <div className="flex grow flex-col leading-6 text-gray-700">
+                <div className="flex grow flex-col justify-center">
+                  <div className="mx-auto grid w-full grid-cols-2 gap-x-2 py-2">
+                    <div className="select-none py-1 text-right">Horizontal</div>
+                    <div
+                      onClick={() => article.x && handleCopy(article.x?.toString() || '', COPY_SUCCESS_TEXT)}
+                      className="flex w-fit cursor-pointer items-center rounded-lg px-2 py-1 font-bold hover:bg-black/5"
+                    >
+                      <span className="pr-2">{article.x ? `${article.x} mm` : 'none'}</span>
+                      {article.x && <FontAwesomeIcon className="text-neutral-400" icon={faCopy} />}
+                    </div>
+                    <div className="select-none py-1 text-right">Vertical</div>
+                    <div
+                      onClick={() => article.y && handleCopy(article.y?.toString() || '', COPY_SUCCESS_TEXT)}
+                      className="flex w-fit cursor-pointer items-center rounded-lg px-2 py-1 font-bold hover:bg-black/5"
+                    >
+                      <span className="pr-2">{article.y ? `${article.y} mm` : 'none'}</span>
+                      {article.y && <FontAwesomeIcon className="text-neutral-400" icon={faCopy} />}
+                    </div>
+                    <div className="select-none py-1 text-right">Media Height</div>
+                    <div
+                      onClick={() => article.z && handleCopy(article.z?.toString() || '', COPY_SUCCESS_TEXT)}
+                      className="flex w-fit cursor-pointer items-center rounded-lg px-2 py-1 font-bold hover:bg-black/5"
+                    >
+                      <span className="pr-2">{article.z ? `${article.z} mm` : 'none'}</span>
+                      {article.z && <FontAwesomeIcon className="text-neutral-400" icon={faCopy} />}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>}
+      )}
     </div>
   )
 }

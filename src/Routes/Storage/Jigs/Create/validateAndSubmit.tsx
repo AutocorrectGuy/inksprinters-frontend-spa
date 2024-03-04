@@ -7,6 +7,7 @@ import { customToastProps } from "../../../../libraries/toast/CustomToastContain
 import { NavigateFunction } from "react-router-dom"
 import { ChangeEvent, Dispatch, FormEvent, MutableRefObject, SetStateAction } from "react"
 import { carveOutNumberValue, clampNumber } from "./utils/numberSanitaze"
+import { updateArticleAndFetchJig } from "../../Articles/Utils/UpdateAndFetch"
 
 type InputEventType = { e: ChangeEvent<HTMLInputElement> }
 type FromEventType = { e: FormEvent<HTMLFormElement> }
@@ -48,6 +49,12 @@ export const handleSubmit = async ({ e, formData, setFormData, displayValueRef, 
     let jigToAdd = { ...formData, created_at: new Date().getTime() }
     validateData(jigToAdd, jigModel)
     await db.jigs.add(jigToAdd)
+
+    // update articles with the new jig that were imported from file
+    const articles = await db.articles.filter((article) => typeof article.imported_jig_name === 'string').toArray()
+    if (articles.length) {
+      await Promise.all(articles.map((article) => updateArticleAndFetchJig(article)))
+    }
     toast.success(`jig ${formData.name} added successfully!`, customToastProps)
     navigate(PATH_CONSTANTS.STORAGE.JIGS.VIEW_MANY) // Redirect to viewMany component
   } catch (error) {

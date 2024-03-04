@@ -62,7 +62,6 @@ const DisplayJig = (props: Props) => {
   const updateMaxCellsCount = () => {
     const maxPossibleCellsCount = calculateMaxCellCount(formData)
     const currentMaxCellsCount = clampNumber(maxPossibleCellsCount, INPUT_FIELD_CLAMPS.copies)
-    console.log(formData.copies, displayValueRef.current.copies, maxPossibleCellsCount)
 
     // If keepMaxCellsCount has declared its will, we bow with grace
     if (keepMaxCellsCount) {

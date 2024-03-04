@@ -42,7 +42,7 @@ const AddImages = (props: Props) => {
   });
 
   return (
-    <MainContentContainer h1='Import images for articles' linkBackTo={PATH_CONSTANTS.STORAGE.ARTICLES.ADD.FROM_FILE.MENU}>
+    <MainContentContainer h1='Import images for articles'>
       <div className='flex flex-col grow w-full p-8'>
         <div {...getRootProps()} className="flex flex-col grow w-full file-input items-center justify-center border-4 border-dashed border-[#878D8D] p-8 text-2xl rounded-lg bg-transparent cursor-pointer">
           <input {...getInputProps()} />

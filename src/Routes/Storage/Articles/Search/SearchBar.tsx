@@ -3,7 +3,6 @@ import TailwindcssDropdown from "../../../../Components/Dropdowns/TailwindcssDro
 import { CategoryType, PlaceHoldersType } from "./Search";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import TailwindcssCheckbox from "../../../../Components/Checkboxes/TailwindcssCheckbox";
 
 interface SearchBarProps {
   value: string;
@@ -20,7 +19,7 @@ const SearchBar = memo<SearchBarProps>(({
   onCategoryChange,
   placeholders
 }) => (
-  <div className='flex flex-col justify-center p-4 bg-base-100/50 rounded-md'>
+  <div className='relative flex flex-col justify-center p-4 bg-gray-500/15 rounded-md rounded-r-none border-r-[3px] border-[#9DA3A3]/25'>
     <div className="text-2xl text-[#CFCBC4] font-semibold py-2">
       Find an Article
     </div>
