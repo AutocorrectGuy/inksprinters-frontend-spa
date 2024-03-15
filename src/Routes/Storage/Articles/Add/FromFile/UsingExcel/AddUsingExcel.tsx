@@ -71,13 +71,13 @@ const AddUsingExcel = () => {
                     article.rotation = cell.toString() ?? '-';
                     break;
                   case 'notes':
-                    article.notes = cell.toString();
+                    article.notes = cell.toString() ?? undefined;
                     break;
                   case 'priming_duration':
                     article.priming_duration = Number(cell);
                     break;
                   case 'image_name':
-                    // Assuming your Article model has a property for the image name
+                    article.imported_image_name = cell.toString() ?? undefined
                     break;
                   case 'jig_name':
                     article.imported_jig_name = cell.toString() ?? null;

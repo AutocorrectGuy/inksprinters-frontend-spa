@@ -4,6 +4,8 @@ import MainContentContainer from '../../../../../../Layouts/MainLayout/component
 import PATH_CONSTANTS from '../../../../../pathConstants'
 import { useDropzone } from 'react-dropzone'
 import { db } from '../../../../../../libraries/dexie/db'
+import { toast } from 'react-toastify'
+import { customToastProps } from '../../../../../../libraries/toast/CustomToastContainer'
 
 type Props = {}
 
@@ -13,7 +15,14 @@ const AddImages = (props: Props) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     multiple: true,
     onDrop: async (files: File[]) => {
-      // Loop through each file
+      
+      if(!files || !files.length) {
+        toast.error('No images have been added!', customToastProps)
+        return
+      }
+
+      // Loop through each file and count how many images have been added
+      let imagesAddedCount = 0
       for (const file of files) {
         // Read the file name without extension
         const fileName = file.name.replace(/\.[^/.]+$/, "");
@@ -21,7 +30,7 @@ const AddImages = (props: Props) => {
         try {
           // Check if the file name matches any article image name in the database
           const matchingArticle = await db.articles
-            .where('image_name')
+            .where('imported_image_name')
             .equalsIgnoreCase(fileName)
             .first();
 
@@ -29,8 +38,9 @@ const AddImages = (props: Props) => {
             // Convert file to ArrayBuffer and update the article
             const arrayBuffer = await file.arrayBuffer();
             matchingArticle.image = arrayBuffer;
+            delete matchingArticle.imported_image_name
             await db.articles.put(matchingArticle);
-            console.log(`Image for article "${fileName}" updated.`);
+            imagesAddedCount++
           } else {
             console.error(`No matching article for image "${fileName}"`);
           }
@@ -38,6 +48,12 @@ const AddImages = (props: Props) => {
           console.error('Error updating image for article:', error);
         }
       }
+
+      imagesAddedCount 
+        ? toast.success(`${imagesAddedCount} images have been added successfully!`, customToastProps)
+        : toast.error('No images were added', customToastProps)
+      
+      navigate(PATH_CONSTANTS.STORAGE.ARTICLES.SEARCH)
     },
   });
 

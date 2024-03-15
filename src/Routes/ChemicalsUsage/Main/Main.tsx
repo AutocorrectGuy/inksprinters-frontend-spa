@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import MainContentContainer from '../../../Layouts/MainLayout/components/MainLayoutContainer'
 import { onFileSelect } from './utils/readExcelFile'
-import { ChemicalUsageLog } from '../../../libraries/dexie/models/chemical_usage_log.model'
 import { db } from '../../../libraries/dexie/db'
 import { Article } from '../../../libraries/dexie/models/article.model'
 import { JigTemplate } from '../../../libraries/dexie/models/jig.model'
@@ -90,9 +89,6 @@ const Main = () => {
           }
         })
 
-
-
-
         // Use joined data to display and calculate total priming time
         // Sum the total priming times in the same loop
         const totalPrimingTimes: { [key: string]: number } = {}
@@ -102,9 +98,10 @@ const Main = () => {
           if (!matchingData) return log
 
           const { copies, primingDuration, primer } = matchingData
-          const totalPrimingDuration = copies && copies > 0 && primingDuration && primingDuration > 0 && log.order_size
-            ? Number(((log.order_size / copies) * primingDuration).toFixed(1))
-            : null
+          const totalPrimingDuration =
+            copies && copies > 0 && primingDuration && primingDuration > 0 && log.order_size
+              ? Number(((log.order_size / copies) * primingDuration).toFixed(1))
+              : null
 
           if (primer) {
             if (!totalPrimingTimes[primer]) {
@@ -121,8 +118,7 @@ const Main = () => {
         })
 
         // round the total priming times values, update the state
-        for (const primer in totalPrimingTimes)
-          totalPrimingTimes[primer] = Number(totalPrimingTimes[primer].toFixed(1))
+        for (const primer in totalPrimingTimes) totalPrimingTimes[primer] = Number(totalPrimingTimes[primer].toFixed(1))
         setTotalPrimingDuration(totalPrimingTimes)
 
         setLogs(mergedLogs)
@@ -137,58 +133,61 @@ const Main = () => {
   }, [])
 
   const LogTable = () => {
-    return (<div className='border border-white/20 rounded-md'>
-      <table className="table w-fit">
-        <thead>
-          <tr>
-            <th>Art. No</th>
-            <th>Order Size</th>
-            <th>Copies</th>
-            <th>Duration</th>
-            <th>Total</th>
-            <th>Primer</th>
-          </tr>
-        </thead>
-        <tbody>
-          {logs.map((log, i) => (
-            <tr key={`log-row-${i}`}>
-              <td>{log.article_number}</td>
-              <td>{log.order_size}</td>
-              <td>{log.copies}</td>
-              <td>{log.primingDuration}</td>
-              <td>{log.totalPrimingDuration}</td>
-              <td>{log.primer}</td>
+    return (
+      <div className="rounded-md border border-white/20">
+        <table className="table w-fit">
+          <thead>
+            <tr>
+              <th>Art. No</th>
+              <th>Order Size</th>
+              <th>Copies</th>
+              <th>Duration</th>
+              <th>Total</th>
+              <th>Primer</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {logs.map((log, i) => (
+              <tr key={`log-row-${i}`}>
+                <td>{log.article_number}</td>
+                <td>{log.order_size}</td>
+                <td>{log.copies}</td>
+                <td>{log.primingDuration}</td>
+                <td>{log.totalPrimingDuration}</td>
+                <td>{log.primer}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     )
   }
 
   const TotalPrimingDurationTable = () => {
     const formatDuration = (durationInSeconds: number) => {
-      return moment.utc(moment.duration(durationInSeconds, 'seconds').asMilliseconds()).format('HH:mm:ss');
-    };
+      return moment.utc(moment.duration(durationInSeconds, 'seconds').asMilliseconds()).format('HH:mm:ss')
+    }
 
-    return (<div className='border border-white/20 rounded-md'>
-      <table className='table w-fit'>
-        <thead>
-          <tr>
-            <th>Primer</th>
-            <th className='whitespace-pre-line'>{`Total Priming Duration\n(HH:mm:ss)`}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Object.entries(totalPrimingDurations).map(([primer, duration]) => (
-            <tr key={primer}>
-              <td>{primer}</td>
-              <td>{formatDuration(duration)}</td>
+    return (
+      <div className="rounded-md border border-white/20">
+        <table className="table w-fit">
+          <thead>
+            <tr>
+              <th>Primer</th>
+              <th className="whitespace-pre-line">{`Total Priming Duration\n(HH:mm:ss)`}</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>)
+          </thead>
+          <tbody>
+            {Object.entries(totalPrimingDurations).map(([primer, duration]) => (
+              <tr key={primer}>
+                <td>{primer}</td>
+                <td>{formatDuration(duration)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    )
   }
   return (
     <MainContentContainer h1="Daily chemicals usage">
