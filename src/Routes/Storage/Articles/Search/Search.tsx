@@ -127,7 +127,6 @@ const Search = () => {
             </div>
             <div className='flex py-2'>
               <CustomPagination currentPage={currentPage} totalPages={totalPages} />
-
             </div>
           </div>
         )}

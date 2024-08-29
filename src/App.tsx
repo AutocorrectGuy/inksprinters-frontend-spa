@@ -34,6 +34,7 @@ import ArticlesAddMenu from './Routes/Storage/Articles/Add/Menu/Menu'
 import ArticlesAddFromFileMenu from './Routes/Storage/Articles/Add/FromFile/Menu'
 import ArticlesAddImages from './Routes/Storage/Articles/Add/FromFile/AddImages/AddImages'
 import ArticlesExportMenu from './Routes/Storage/Articles/Export/ExportMenu'
+import ConeCrafter from './Routes/Printing tools/Cone Crafter/ConeCrafter'
 
 const router = createBrowserRouter([
   {
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
       {
         path: PATH_CONSTANTS.PRINTING_TOOLS.CMYK_Color_PICKER,
         element: <CMYKColorPicker />,
+      },
+      {
+        path: PATH_CONSTANTS.PRINTING_TOOLS.CONE_CRAFTER,
+        element: <ConeCrafter/>,
       },
 
       /**

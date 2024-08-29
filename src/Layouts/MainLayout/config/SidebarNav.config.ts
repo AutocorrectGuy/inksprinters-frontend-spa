@@ -15,7 +15,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import PATH_CONSTANTS from '../../../Routes/pathConstants'
 import { faBookmark, faFileExcel, faBuilding } from '@fortawesome/free-regular-svg-icons'
-import { faArtstation } from '@fortawesome/free-brands-svg-icons'
+import { faArtstation, faConnectdevelop } from '@fortawesome/free-brands-svg-icons'
 import { SideBarButtonProps } from '../types'
 
 export const sideBarButtons: SideBarButtonProps[] = [
@@ -47,6 +47,12 @@ export const sideBarButtons: SideBarButtonProps[] = [
         label: 'Center artwork',
         description: 'Calculates and returns the perfect centering values for input into RIP software.',
         href: PATH_CONSTANTS.PRINTING_TOOLS.CENTER_ARTWORK,
+      },
+      {
+        icon: faConnectdevelop,
+        label: 'Cone crafter',
+        description: "Calculate the cone's angle and total height by inputting real-life measurements.",
+        href: PATH_CONSTANTS.PRINTING_TOOLS.CONE_CRAFTER,
       },
       {
         icon: faCalculator,

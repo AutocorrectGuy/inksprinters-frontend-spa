@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -16,4 +17,58 @@ input[type='number'] {
   -webkit-appearance: textfield; /* Chrome, Safari, newer versions of Opera */
   -moz-appearance: textfield; /* Firefox */
   appearance: textfield; /* Standard syntax; future-proofing for other browsers, and should also work in Edge */
+}
+
+.text-stroke {
+  text-shadow:
+  0 -2px 0 #000,
+  2px 0 0 #000,
+  -2px 0 0 #000,
+  0 2px 0 #000, /* Direct shadows for N, E, S, W */
+  
+  1px 2px 0 #000,
+  2px 1px 0 #000,
+  -1px 2px 0 #000,
+  -2px 1px 0 #000,
+  1px -2px 0 #000,
+  2px -1px 0 #000,
+  -1px -2px 0 #000,
+  -2px -1px 0 #000, /* Diagonal shadows */
+  
+  2px 2px 0 #000,
+  -2px -2px 0 #000,
+  -2px 2px 0 #000,
+  2px -2px 0 #000; /* Corner shadows to smooth out */
+}
+
+.char-bounce {
+  position: relative;
+  width: 60px;
+}
+
+.char-bounce > * {
+  position: absolute;
+  bottom: 0px; 
+}
+
+.char-bounce > *:nth-child(1) {
+  left: 0px;
+  animation: char-bounce-animation 0.3s ease-out infinite alternate; 
+}
+
+.char-bounce > *:nth-child(2) {
+  left: 20px;
+  animation: char-bounce-animation 0.3s ease-out infinite alternate; 
+  animation-delay: 0.1s; 
+}
+
+.char-bounce > *:nth-child(3) {
+  left: 40px;
+  animation: char-bounce-animation 0.3s ease-out infinite alternate; 
+  animation-delay: 0.2s; 
+}
+
+@keyframes char-bounce-animation {
+  0% { bottom: 0; }
+  100% { bottom: 10px; }
 }

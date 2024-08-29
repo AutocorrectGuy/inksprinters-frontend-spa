@@ -20,8 +20,8 @@ export type ValidationFunctionKey = keyof ValidationFunctionMap
 
 export const isAlpha = (value: string): boolean => /^[A-Za-z]+$/.test(value)
 export const isNumeric = (value: any): boolean => !isNaN(parseFloat(value)) && isFinite(value)
-export const isBoolean = (value: any): boolean => typeof value === 'boolean'
 export const isAlphaNumeric = (value: string): boolean => /^[A-Za-z0-9]+$/.test(value)
+export const isBoolean = (value: any): boolean => typeof value === 'boolean'
 export const isValidText = (value: string): boolean =>
   /^[A-Za-z0-9\s!@#$%^&*()\-_+=\[\]{}\\|;:'",.<>?/`~]*$/.test(value)
 export const isRequired = (value: any): boolean => value !== null && value !== undefined && value !== ''

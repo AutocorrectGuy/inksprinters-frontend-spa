@@ -9,6 +9,7 @@ export default {
       fontFamily: {
         // sans: ["Figtree", ...defaultTheme.fontFamily.sans],
         PlayfairDisplay: ['Playfair Display', ...defaultTheme.fontFamily.sans],
+        PressStart2P: ['"Press Start 2P"', ...defaultTheme.fontFamily.sans],
       },
     },
   },

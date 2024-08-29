@@ -12,6 +12,7 @@ const PATH_CONSTANTS = {
   PRINTING_TOOLS: {
     ROOT: '/printing-tools',
     CENTER_ARTWORK: '/printing-tools/center-artwork',
+    CONE_CRAFTER: '/printing-tools/cone-crafter',
     RECALIBRATE_ARTICLE_POSITION: '/printing-tools/recalibrate-article-position',
     CMYK_Color_PICKER: '/printing-tools/cmyk-color-picker',
   },
