@@ -1,4 +1,11 @@
-Install node.
-Then run `npm install`
-And if you are using windows, run `start dev`
-and you are good to go
+
+# Stack used
+    - Frontend: React (typescript/javascript)
+
+    - Backend: Laravel (php)
+
+    - Database: mysql
+
+    - Hosting: hostiner.com
+
+inksprinters.com
